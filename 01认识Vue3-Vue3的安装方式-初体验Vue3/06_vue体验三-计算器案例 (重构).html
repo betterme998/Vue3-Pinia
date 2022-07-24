@@ -6,15 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <h2>当前计数：{{counter}}</h2>
+        <button @click="increment">+1</button>
+        <button @click="decrement">-1</button>
+    </div>
     <script src="./lib/Vue.js"></script>
     <script>
         const app = Vue.createApp({
-            template:`
-                <h2>当前计数：{{counter}}</h2>
-                <button @click="increment">+1</button>
-                <button @click="decrement">-1</button>
-            `,
+            //template:``,//把template模板抽离出来.template里面的代码最终会替换过载节点里的代码，所以直接在节点里写就可以
             data (){
                 return{
                     counter:0
