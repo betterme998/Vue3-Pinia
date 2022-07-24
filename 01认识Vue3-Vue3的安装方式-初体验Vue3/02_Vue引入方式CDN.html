@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>.....</h2>
+    <p>!!!!!</p>
+    <div id="app"></div>
+    <!-- 引入vue -->
+    <!-- CDN地址 -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 使用vue
+        const app = Vue.createApp({//Vue中有createApp方法，创建vue实例
+            template: `<h2>Hello World</h2>`
+        })
+        // app中有mount 挂载，上面要渲染template，要告诉他们要渲染的位置
+        app.mount("#app")
+    </script>
+</body>
+</html>
