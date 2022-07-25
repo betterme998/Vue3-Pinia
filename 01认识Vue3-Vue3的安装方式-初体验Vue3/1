@@ -38,4 +38,35 @@
         
 4.Vue案例初体验
 5.命令和声明式编程
+    命令式编程关注的“how to do” 自己完成整个how的过程
+    声明式编程关注的是‘what to do’,由框架（机器）完成“how”的过程；
+
+    *原生的实现过程中，我们是如何操作的呢？
+        .我们每完成一个操作，都需要通过Javascript编写一条代码，来给浏览器一个指令
+        .这被称为命令式编程
+        早期的原生JavaScript和jQuery开发的过程中，我们都是通过这种命令式的方式在编写
+    *在Vue的过程中，我们是如何操作的呢？
+        .我们会在createApp传入的对象中声明需要的内容，模板template，数据data，方法methods；
+        .这样的编写代码的过程，我们称之为是声明式编程
+        .目前Vue，React，Angular，小程序的编程模式，我们称之为声明式编程
+5.MVVM模型
+    #MVC和MVVM都是一种软件的体系结构
+        .MVC是Model-View-Controller的简称，是在前期被使用非常框架的架构模式，比如iOS，前端
+        .MVVM是Model-view-ViewModel的简称，是目前非常流行的框架模式
+
 6.Vue的options
+    options的data属性
+        .data属性传入一个函数，并且该函数需要一个对象：
+        .data中返回的对象会被Vue的响应式系统劫持，之后对该对象的修改或者访问都会在劫持中被处理
+            *所以我们在template或者app中通过{{counter}}访问counter，可以从对象中获取到数据；
+            *所以我们修改counter的值时，app中的{{counter}}也会发生改变
+
+    动态数据方法：
+        1.Object.defineProperty(info,"name",{
+            set:
+            get:
+        })
+        2.new Proxy(info,{
+            set:
+            get:
+        })
