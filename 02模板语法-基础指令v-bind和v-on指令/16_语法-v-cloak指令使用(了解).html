@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2 v-cloak>{{message}}</h2>
+        <!-- 整个浏览器在加载网页时会先对这里html元素进行解析并展示 -->
+        <!-- 之后再去吧message进行转换 -->
+        <!-- 加上 c-cloak（斗篷）时，需要和样式 [v-cloak]{display:none}配合使用-->
+
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        setTimeout(() => {//3秒后在执行，在3秒内没有对上面的模块进行解析，会看到原始值{{message}}三秒后才解析。
+        // 这就给用户带来不好的体验，这是加上v-cloak
+          const app = Vue.createApp({
+            data() {
+                return{
+                  message:"Hello Vue"
+                }
+            }
+        })
+        app.mount("#app")
+        }, 3000);
+    </script>
+</body>
+</html>

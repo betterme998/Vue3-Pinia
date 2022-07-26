@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- 如果我们就是要显示两个大括号 就加上v-pre-->
+        <!-- v-pre可以跳过编译过程，显示原始的数据 -->
+        <p v-pre>{{}}</p>
+        <p>当前计数：{{ counter }}</p>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  message:"Hello Vue",
+                  counter:0
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

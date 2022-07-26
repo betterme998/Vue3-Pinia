@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="info" v-memo="[name]">
+          <h2>姓名：{{ name }}</h2>
+          <h2>年龄：{{ age }}</h2>
+          <h2>身高：{{ height }}</h2>
+          <!-- 需求：只有当name发生改变时才进行更新。什么age height 改变不要管直接跳过 -->
+          <!-- 需要使用v-memo -->
+        </div>
+        <button @click="updateInfo">改变信息</button>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  name:"Why",
+                  age:18,
+                  height:1.88
+                }
+            },
+            methods:{
+              updateInfo() {
+                // 测试只有改变name才进行更新，改变其他值直接跳过
+                // this.name ="kobe"
+                this.age = "19"
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
