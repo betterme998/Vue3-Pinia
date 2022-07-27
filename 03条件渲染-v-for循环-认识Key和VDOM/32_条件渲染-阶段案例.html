@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <div>
+        <button @click="toggle">切换</button>
+      </div>
+      <template v-if="isShowCode">
+        <img src="https://img0.baidu.com/it/u=40575660,993606957&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1659027600&t=b161cbde5678c7903632bdfc0eefcf7f" alt="">
+      </template>
+    </div>
+    
+    
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  isShowCode:true,
+                }
+            },
+            methods: {
+              toggle() {
+                this.isShowCode = !this.isShowCode
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
