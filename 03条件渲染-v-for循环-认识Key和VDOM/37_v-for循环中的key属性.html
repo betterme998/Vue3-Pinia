@@ -6,9 +6,25 @@
     <title>Document</title>
 </head>
 <body>
+<!-- 
+
+  这个案例是当我们点击按钮会在中间插入一个f；
+  我们可以确定需要更新的是li的列表
+    在vue中，对于相同父元素的子元素节点并不会重新渲染整个列表
+    对于列表a,b,c,d他们都是没有变化的
+    在操作真实dom时，我们只需要在中间插入一个f的li即可
+
+  **那么Vue中对于列表的更新究竟是如何操作的呢？
+    .Vue事实上对于有key和没有key会调用两种不同的方法
+    .有key，那么就使用patchKeyedChildren方法
+    .没有key,那么就使用pathchUnkeyChildren方法
+ -->
+
     <div id="app">
+      <button @click="insertF">插入f</button>
       <ui>
         <!-- key要求是唯一的：ID -->
+        <!-- 绑定key是为了让vue尽可能知道那些数据可以复用，让vue快速的识别出来是不是同样的东西 -->
         <li v-for="item in letters" :key="item">{{item}}</li>
       </ui>
     </div>
@@ -20,6 +36,12 @@
                 return{
                   letters:["a",'b','c','d','e']
                 }
+            },
+            methods: {
+              // 插入东西时会发生什么变化
+              insertF() {
+                this.letters.splice(2,0,"f")
+              }
             }
         })
         app.mount("#app")
