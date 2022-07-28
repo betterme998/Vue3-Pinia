@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <!-- 1.methods方法直接进行拼接 -->
+      <!-- 1.拼接名字 -->
+        <h2>{{getFullname()}}</h2>
+        <h2>{{getFullname()}}</h2>
+
+      <!-- 2.显示分数等级 -->
+        <h2>{{ getScoreLevel() }}</h2>
+
+      <!-- 3. 反转单词显示文本-->
+        <h2>{{ reveseMessage() }}</h2>
+
+        <!-- 上面的内容并不是直接使用的，而是要做一些运算， -->
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  // 1.姓名
+                  firstName:'kobe',
+                  lastName:'bryant',
+
+                  // 2.分数：及格/不及格
+                  score:80,
+
+                  // 3. 一串文本：对文本中的单词进行反转显示
+                  message:"my name is why"
+                }
+            },
+            methods:{
+              getFullname() {
+                return this.firstName + " " +this.lastName
+              },
+              getScoreLevel() {
+                return this.score >= 60 ? "及格":"不及格"
+              },
+              reveseMessage() {
+                return this.message.split(" ").reverse().join(' ')
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

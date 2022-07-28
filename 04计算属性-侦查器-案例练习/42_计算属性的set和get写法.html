@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{fullname}}</h2>
+
+        <button @click="setFullname">修改</button>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  fistname:"coder",
+                  lastname:"why"
+                }
+            },
+            computed: {
+              // 语法糖写法
+              // fullname() {
+              //   return this.fistname + " " + this.lastname
+              // },
+
+              // 完整写法
+              fullname: {
+                get:function() {
+                  return this.fistname + " " + this.lastname
+                },
+                set:function(value) { //set用的少
+                  const names = value.split(" ")
+                  this.fistname = names[0]
+                  this.lastname = names[1]
+                }
+              }
+            },
+            methods: {
+              setFullname() {
+                this.fistname = "kobe bryant"
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

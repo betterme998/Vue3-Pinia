@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ info.name }}</h2>
+        <button @click="changeInfo">修改</button>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  info: { name: "why", age: 18 }
+                }
+            },
+            methods: {
+              changeInfo() {
+                // 1.创建一个新对象，赋值给info
+                // this.info = { name: "kobe" }
+
+                // 2.直接修改原对象某个属性
+                // template模板监听数据是深度监听的。
+                this.info.name = "kobe"
+              }
+            },
+            watch: {
+              // 默认watch监听不会进行深度监听的
+              // info(newValue, oldValue) {
+              //   console.log("侦听到info改变",newValue,oldValue);
+              // }
+
+              // 进行深度监听
+              info: {
+                // 因为只是改变了info的属性所以对象没有变，newValue === oldValue
+                handler(newValue,oldValue) {
+                  console.log("侦听到info改变",newValue,oldValue);
+                },
+                // 监听器选项1
+                // onfo进行深度监听
+                // 默认情况下第一次进入不会触发侦听器
+                deep:true,//deep(深度)
+
+                // 监听器选项2
+                // 第一次渲染直接执行一次监听器
+                immediate: true, //immediate(立刻，马上)
+              },
+              // 除了上面的写法，还可以写成下面形式
+              "info.name": function(newValue,oldValue) {
+                console.log("info.name发生变化",newValue,oldValue);
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>

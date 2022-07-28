@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <button @click="changmessage">修改</button>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  message:"Hello Vue"
+                }
+            },
+            methods: {
+              changmessage() {
+                this.message = "你好啊，李银河！"  
+              }
+            },
+            // 生命周期回调函数:当前的组件被创建时自动执行
+
+            // 一般该函数用来发送网络请求
+            created() {
+              // ajax/fetch/axios
+              // this.$watch 第一个参数是侦听源 第二个参数是侦听的回调函数 第三个参数是额外的其他选项，比如deep，immediate
+              this.$watch("message",(newValue,oldValue) => {
+
+              },{deep:true})
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
