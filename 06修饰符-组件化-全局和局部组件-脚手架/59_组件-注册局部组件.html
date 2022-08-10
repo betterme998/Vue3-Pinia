@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .product{
+        background-color: orange;
+      }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <home-nav></home-nav>
+      <product-item></product-item>
+    </div>
+    <template id="product">
+      <div class="product">
+        <h2>{{title}}</h2>
+        <p>商品描述，限时折扣，赶紧抢购</p>
+        <p>价格：{{price}}</p>
+        <button @click="favarItem">收藏</button>
+      </div>
+    </template>
+
+    <template id="nav">
+      <p>================nav start==============</p>
+        <h2>我是home-nav组件</h2>
+      <product-item></product-item>
+
+      <p>================nav end==============</p>
+    </template>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+      const productItem = {
+        // 组件当中要template
+        template:"#product",
+        data() {
+          return {
+            title:"我是product的title",
+            price:9.39
+          }
+        }
+      }
+      // 1.1组件打算在哪里被使用
+        const app = Vue.createApp({
+            data() {
+                return{
+                  message:"Hello Vue"
+                }
+            },
+            methods:{},
+            computed:{},
+            watch:{},
+            // 告诉我们在这个组件当中会用到那些别的组件
+            // 局部组件注册，用到components
+            components:{
+              productItem,
+              HomeNav: {
+                template:"#nav",
+                components: {
+                  productItem
+                }
+              }
+            }
+        })
+        
+
+        app.mount("#app")
+    </script>
+</body>
+</html>

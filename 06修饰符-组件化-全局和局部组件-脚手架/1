@@ -54,6 +54,10 @@
       .在开发中我们发现只使用了ComponentA，ComponentB，如果ComponentC没有用到但是我们依然会在全局进行注册，那么意味着类似于
       webpack这种打包工具在打包我们项目时，我们依然会对其进行打包
       .这样最终打包出的JavaScript包会有关于ComponentC的内容，用户在下载对应的JavaScript时也会增加包大小
+    .所以在开发中我们通常使用组件的时候采用的都是局部注册：
+      .局部注册是在我们需要使用到的组件中，通过components属性来进行注册；
+      .比如之前的App组件中，我们有data，computed,methods等选项了，事实上还可以有一个components选项；
+      .该components选项对应的是一个对象，对象中的键值对是组件的名称，组件对象
 
 
 
