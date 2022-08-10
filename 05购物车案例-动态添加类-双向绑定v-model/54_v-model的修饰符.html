@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <!-- 1.lazy -->
+      <!-- 加上lazy后数据不会实时更新，需要回车或者提交等操作后才做的 -->
+      <input type="text" v-model.lazy="message">
+      <h2>message: {{message}}</h2>
+      <hr>
+      <!-- 2.number： 自动将内容转换为数字 -->
+      <!-- 刚开始绑定时是number类型，输入内容变字符串了 -->
+      <!-- 加上number就是数字类型 -->
+      <input type="text" v-model.number="counter">
+      <h2>counter:{{counter}}-{{typeof counter}}</h2>
+
+      <!-- 当type为number时，只能输入数字所以不需要number修饰符 -->
+      <!-- 当绑定的时为string类型时，即使设置为number，也是string类型 -->
+      <input type="number" v-model="counter2">
+      <h2>counter:{{counter2}}-{{typeof counter2}}</h2>
+
+      <hr>
+      <!-- 3.trim： 去除首尾的空格 -->
+      <input type="text" v-model.trim="content">
+      <h2>content: {{content}}</h2>
+
+      <hr>
+      <!-- 4.使用多个修饰符 -->
+      <input type="text" v-model.lazy.trim="content">
+      <h2>content: {{content}}</h2>
+    </div>
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return{
+                  message:"Hello Vue",
+                  counter:0,
+                  counter2:'1',
+                  content:""
+                }
+            },
+            watch: {
+              // 监听当前值，判断是否有空格，有。
+              // 现在要去除这些空格。调用trim() 去除首尾空格
+              content(newValue) {
+                console.log("newValue:",newValue);
+                // console.log("newValue:",newValue.trim);  能跟在v-model后面，也能单独调用
+
+              }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
