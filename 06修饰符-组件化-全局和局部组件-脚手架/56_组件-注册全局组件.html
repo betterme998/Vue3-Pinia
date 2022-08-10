@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .product{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 一样的内容写了三遍，我们将内容抽离成单独的组件 -->
+      <!-- 1.内容一 -->
+      <div class="product">
+        <h2>我是商品</h2>
+        <div>商品图片</div>
+        <div>商品价格: <span>￥9.9</span></div>
+        <p>商品描述信息，9.9秒杀</p>
+      </div>
+
+      <!-- 2.内容二 -->
+      <product-item></product-item>
+
+
+      <!-- 3.内容三 -->
+      
+
+      <!-- 使用product-item组件 -->
+      <product-item></product-item>
+
+
+      <!-- 组件product-item的模板 -->
+      <template id="item">
+        <div class="product">
+            <h2>我是商品</h2>
+            <div>商品图片</div>
+            <div>商品价格: <span>￥9.9</span></div>
+            <p>商品描述信息，9.9秒杀</p>
+        </div>
+      </template>
+    </div>
+
+
+    
+
+
+    <script src="./lib/Vue.js"></script>
+    <script>
+      // createApp方法要传入一个对象，这个对象就是组件，app也就是根组件
+      // 1.组件：App组件(根组件)
+        const App = {}
+
+      // 2.开发product-item的组件, 组件就是对象，我们要把productItem当成组件使用该怎么办？ =》 要注册
+    //   z组件内部有自己的模板 template
+        const productItem = {
+            template:"#item"
+        }
+
+      // 3.创建App
+        const app = Vue.createApp(App)
+      
+      // 4.注册一个全局组件
+      // 通过component传入组件名称,在使用时用，第二个参数是组件具体对象
+    //   template这样写麻烦，把它抽离
+      app.component("product-item",{
+            template:`
+            <div class="product">
+            <h2>我是商品</h2>
+            <div>商品图片</div>
+            <div>商品价格: <span>￥9.9</span></div>
+            <p>商品描述信息，9.9秒杀</p>
+      </div>`
+        }) 
+
+        app.mount("#app")
+
+
+
+
+
+
+        /*
+            1.通过app.component(组件名称，组件的对象) 注册组件
+            2.在App组件的模板中，可以直接使用product-item的组件
+        */ 
+    </script>
+</body>
+</html>
