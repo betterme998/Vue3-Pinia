@@ -1,0 +1,47 @@
+一。阶段案例
+  1.1购物车
+  1.2列表选择
+
+二。v-model双向绑定
+  2.1v-model基本使用
+    input手动双向绑定
+    v-model
+    原理
+  2.2v-model其她类型
+    .textarea
+    .checkbox
+      .单选
+      .多选
+    。radio
+    。select
+      单选
+      多选
+  2.3v-model值绑定
+  2.4v-model修饰符
+    .lazy
+    .number
+    .trim
+  
+  三。组件化的基础
+  3.1组件化的思想
+  3.2注册全局组件
+  3.3注册局部组件
+  四。vue脚手架
+  。html
+  。vue文件
+  4.2vue CLI安装和使用
+  4.3vue项目目录结构
+  4.4browserslistrc文件作用
+
+
+
+作业：
+1.什么是双向绑定？ v-model的本质是什么？
+
+2.什么是组件化开发，有什么作用？
+
+3.vue中注册全局组件和局部组件有什么区别？
+
+4.什么是vue cli，如何使用它创建vue项目
+
+5.组件整理vue项目目录结构中各个文件的作用
