@@ -48,7 +48,12 @@
           但是html当中不区分大小写，这样在html中不行，但在vue的template中可以这样写
         （推荐使用短横线分隔符写）
 
-  3.注册局部组件
+  
+
+
+
+# 3.注册Vue的布局组件
+  1.注册局部组件
     .全局组件往往是在应用程序一开始就会注册完成，那么意味着某些组件我们并没有用到，也会一起被注册；
       .比如我们注册三个全局组件：ComponentA，ComponentB,ComponentC
       .在开发中我们发现只使用了ComponentA，ComponentB，如果ComponentC没有用到但是我们依然会在全局进行注册，那么意味着类似于
@@ -59,12 +64,74 @@
       .比如之前的App组件中，我们有data，computed,methods等选项了，事实上还可以有一个components选项；
       .该components选项对应的是一个对象，对象中的键值对是组件的名称，组件对象
 
-
-
-# 3.注册Vue的布局组件
-
 # 4.Vue的开发模式解析
+  .目前我们使用vue的过程都是在html文件中，通过template编写自己的模板，脚本逻辑，样式等
+  .但是随着项目越来越复杂，我们会采用组件化的方式进行开发；
+    .这就意味着每个组件都会有组件的模板，脚本逻辑，样式等
+    .当然我们依然可以把它们抽离到单独的js，css文件中，但是它们还是会分离开来
+    .也包括我们的script是在一个全局的作用域下，很容易出现命名冲突的问题；
+    .并且我们的代码为了适配一些浏览器，必须使用es5的语法
+    .在我们编写代码完成之后，依然需要通过工具对代码进行构建，代码；
+
+  .所以在真实开发中，我们可以通过一个后缀名为.Vue的single-file components（单文件组件）来解决，并且可以使用webpack或者vite或者rollup等构建工具来对其进行处理。
+  
+  .单文件的特点
+    .就是index.vue文件
+    特点：
+      1.代码的高亮
+      2.ES6,CommonJS的模块化能力
+      3.组件作用域的CSS
+      4.可以使用预处理器来构建更加丰富的组件，比如TypeScript，Babel，Less，Sass等；
+  
+  .如何支持SFC
+    .如果我们想要使用这样的SFC的.vue文件,比较常见的是两种方式
+      方式一：使用Vue CLI来创建项目，项目会默认帮助我们配置好所有的配置选项，可以在其中直接使用.vue文件；
+      方式二：自己使用webpack或rollup或vite这类打包工具，对其进行打包处理
+
+    .我们最终，无论是后期我们做项目，还是在公司进行开发，通常都会采用Vue CLI的方式来完成
+
+  .VSCode对SFC文件的支持
+
 
 # 5.Vue CLI安装和使用
+  1.Vue CLI脚手架
+    什么是Vue脚手架？
+      .脚手架其实是建筑工程中的一个概念，在我们软件工程中的一个感念，在我们软件工程中也会将一些帮助我们搭建项目的工具脚手架
+
+    Vue的脚手架就是Vue CLI；
+      .CLI是Command-Line-Interface，翻译为命令行界面；
+      .我们通过CLI选择项目的配置和创建出我们的项目；
+      .Vue CLI已经内置了webpack相关的配置，我们不需要从零来配置
+
+  2.Vue CLI安装和使用
+    .Vue CLI也是npm包，用npm下载  全局安装 -g
+    .安装Vue CLI（目前最新的版本v.5.08）
+      。我们进行全局安装，这样在任何时候都可以通过vue的命令来创建项目
+        npm install @vue/cli -g
+
+    .升级Vue CLI
+      .如果是比较旧的版本，可以通过下面的命令来升级
+        npm update @vue/cli -g
+
+package.json文件
+    {
+  "name": "01_product_demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {//脚本
+    "serve": "vue-cli-service serve",//启动一个本地服务
+    "build": "vue-cli-service build"//构建打包项目
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^3.2.13"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0"
+  }
+}
+
+
 
 # 6.Vue得项目目录分析
