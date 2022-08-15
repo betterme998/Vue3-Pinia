@@ -1,0 +1,42 @@
+# 1.jsconfig.js的演示
+  在02_product_demo文件当中修改webpack路径配置后不会有提示，需要修改jsconfig.js具体在02_product_demo/utils/index
+
+# 2.引入的vue的版本
+  主要解释在main 和 App.vue文件
+  默认vue版本（就是import { createApp } from 'vue'）：runtime， vue-loader完成template的编译过程 （仅限于.vue文件）
+  另一个版本：（import { createApp } from "vue/dist/vue.esm-bundler.js"）：runtime + compile，对template进行编译 （就是源码）
+
+  webpack打包入口文件-》main.js在main.js里面会有一个createApp（App）需要根组件，所以要开发根组件-》创建App.vue组件，然后
+  根组件里面也可以用组件，每个组件都有自己的逻辑，样式
+#  3.补充：单文件Vue style是有自己的作用域
+  给style加上 scoped
+
+#  4.补充：vite创建一个Vue项目
+  创建项目方式：Vue Cli：vue create  （基于webpack创建的）  （02_product_demo）
+               npm init vue@latest：  （基于vite创建的）
+                1.安装一个本地工具：create vue
+                2.使用create-vue创建一个vue项目
+
+#  02_product_demo项目utils文件夹，main.js等注意内容
+
+# 5.组件通信 
+  04_learn_Component
+  最终开发出来的东西最终会形成一个组件树，很多情况需要a组件传递一些数据到b组件，b组件发生的事件需要传递到a组件（这就涉及到组件通信）
+  1.Vue组件的嵌套关系
+    .前面我们是将所有的逻辑放到一个App.vue中：
+    .如果我们一个应用程序将所有逻辑都放在一个组件中，那么这个组件就会变成非常的臃肿和难以维护
+    .所以组件化的核心思想应该是对组件进行拆分，拆分成一个个小的组件
+    .再将这些组件嵌套在一起，最终形成我们的应用程序；
+
+    当我们对组件进行拆分之后，这时数据还在根组件我们需要将数据传入其他组件
+
+  2.父组件传递子组件
+    在开发过程中，我们会经常遇到需要组件之间相互通信；
+      可能是子组件发生了事件，需要父组件来完成某些操作，那就需要子组件向父组件传递事件
+      要么就是父组件传递数据给子组件等等。。。。
+
+  3.非props的attribute
+
+  4.子组件传递父组件
+
+  5.组件通信案例练习
