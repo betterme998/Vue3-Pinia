@@ -45,6 +45,7 @@
     2.3什么是Props呢？
       .Props是你可以在组件上注册一些自定义的attrbute
       .父组件给这些attribute赋值，子组件听过attribute的名称获取到对应的值
+      attribute：是HTML标签上的某个属性，如id、class、value等以及自定义属性，它的值只能是字符串，关于这个属性一共有三个相关的方法，setAttribute、getAttribute、removeAttribute； 
     2.4.Props的数组用法
           存在一个弊端：1.不能对类型进行验证,2.没有默认值
       .Props的对象用法
@@ -70,7 +71,14 @@
             .html中attribute名是大小写不敏感的，会把大写变小写
             .这意味着使用DOM模板时，（驼峰命名法）的prop名需要使用等价的bebab-case（短横线分隔符命名法）
 
-  3.非props的attribute
+  3.非props的attribute （ attribute：是HTML标签上的某个属性，如id、class、value等以及自定义属性，它的值只能是字符串，关于这个属性一共有三个相关的方法，setAttribute、getAttribute、removeAttribute； ）
+    .当我们传递给一个组件某个属性，但是该属性并没有定义对应的props或者emits时，就被称之为非Prop的Attribute；
+    .常见的包括class,style,id等属性；
+  .attribute继承
+      当组件有单个根节点时，非Prop的Attribute将自动添加到根节点的Attribute中 
+  
+  如果不希望非
+
 
   4.子组件传递父组件
 
