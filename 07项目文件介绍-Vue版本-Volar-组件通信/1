@@ -39,6 +39,36 @@
       1.父组件传递子组件：通过props属性
       2.子组件传递父组件：通过$emit触发事件
     
+    2.2在开发中常见的父子组件之间通信，比如父组件有一些数据，需要子组件来进行展示：
+      这个时候我们可以通过props来完成组件之间的通信
+
+    2.3什么是Props呢？
+      .Props是你可以在组件上注册一些自定义的attrbute
+      .父组件给这些attribute赋值，子组件听过attribute的名称获取到对应的值
+    2.4.Props的数组用法
+          存在一个弊端：1.不能对类型进行验证,2.没有默认值
+      .Props的对象用法
+          使用对象语法可对传入的内容进行限制
+          1.类型
+          2.是否必传
+          3.默认值
+          
+          细节一：type的类型都可以是那些
+            String
+            Number
+            Boolean
+            Array
+            Object
+            Date
+            Function
+            Symbol
+          细节二：对象类型的其他写法
+            当默认值是一个对象是，必须吧default写成一个函数
+            数组类型 default也得写成函数
+
+          细节三：prop的大小写命名
+            .html中attribute名是大小写不敏感的，会把大写变小写
+            .这意味着使用DOM模板时，（驼峰命名法）的prop名需要使用等价的bebab-case（短横线分隔符命名法）
 
   3.非props的attribute
 
