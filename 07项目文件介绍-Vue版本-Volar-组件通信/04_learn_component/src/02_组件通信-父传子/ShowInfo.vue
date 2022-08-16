@@ -1,7 +1,8 @@
 <template>
   <div class="infos">
     <!-- 大胡子函数可以访问到props里的数据 -->
-    <h2>姓名：{{name}}</h2>
+    <!-- 禁止非props添加到根后，还行拿到的话用$attrs  ($attrd.想拿的值) -->
+    <h2 :class="$attrs.class">姓名：{{name}}</h2>
     <h2>年龄：{{age}}</h2>
     <h2>身高：{{height}}</h2>
   </div>
@@ -13,7 +14,11 @@
     // 1.数组语法
     // props:["name", "age", "height"]
 
-    // 2.对象语法
+    // 2.对象语法（必须掌握）
+    // 当我们不希望非props属性添加成子组件根属性时 加上：inheritAttrs: false,
+    inheritAttrs: false,
+
+    // 当我们设置为inheritAttrs: false （禁用时）,还想时想拿到传过来的值时：$attrs
     props: {
       name: {
         type:String, //限制类型
