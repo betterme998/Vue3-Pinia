@@ -6,7 +6,9 @@ import { createApp } from 'vue'
 // import App from "./07_组件插槽-作用域插槽/App.vue";
 // import App from "./08_Provide和Inject/App.vue";
 // import App from "./10_生命周期函数演练/App.vue";
-import App from "./11_ref获取元素组件/App.vue";
+// import App from "./11_ref获取元素组件/App.vue";
+import App from "./12_动态组件的使用/App.vue";
+
 
 
 
