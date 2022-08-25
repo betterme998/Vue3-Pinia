@@ -290,6 +290,20 @@
     12案例
 
   4.keep-alive组件
+    4.1.认识keep-alive
+    keep-alive属性
+      include -String|RegExp|Array 。只有名称匹配的组件会被缓存；
+      exclude -String|RegExp|Array 。任何名称匹配的组件都不会被缓存
+      max -number|String 最多可以缓存多少组件实例，一旦达到这个数字，那么缓存组件中最近没有被访问的实例会被销毁
+    include和exclude prop允许组件有条件地缓存：  包括的组件不能有逗号，具体看04项目 13app.vue
+      二者都可以用逗号分隔字符串，正则表达式或一个数组来表示
+      匹配首先检查组件自身name选项 
+
+    4.2缓存组件的生命周期
+      对于缓存的组件来说，再次进入时，我们是不会执行created或者mounted等生命周期函数的
+        但是有时候我们确实希望监听到何时进入到组件，何时离开了组件
+        这个时候我们可以使用 activated和deactivated这两个生命周期钩子函数来监听
+
 
   5.异步组件的使用
 
