@@ -341,5 +341,19 @@
         })
 
   6.组件的v-model
+    6.1.前面我们在input中可以使用v-model来完成双向绑定：
+      这个时候非常方便，因为v-model默认帮助我们完成了两件事；
+      v-bind:value的数据绑定和@input的事件监听
+    如果我们封装了一个组件，其他地方在使用这个组件时，是否也可以使用v-model来同时完成这两个功能呢？
+      也是可以的，vue也支持在组件上使用v-model；
+    当我们在组件上使用的时候，等价于如下操作；
+      .我们会发现和input元素不同的只是属性的名称和事件触发的名称而已；
+  
+  组件v-model的实现
+    .为了让组件可以正常工作，这个组件内的<input>必须：
+      将其value attribute绑定到一个叫modelValue 的prop上
+      在其input事件被触发时，将新的值通过自定义的update：modelValue事件抛出
+      在15_组件的v-model里面
+
 
   7.组件的混入Mixin
