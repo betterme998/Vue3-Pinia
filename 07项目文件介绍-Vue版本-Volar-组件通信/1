@@ -355,5 +355,12 @@
       在其input事件被触发时，将新的值通过自定义的update：modelValue事件抛出
       在15_组件的v-model里面
 
+    6.2.绑定多个属性
+      我们现在通过v-model是直接绑定了一个属性，如果我们希望绑定多个属性呢？
+        .也就是我们希望一个组件上使用多个v-model是否可以实现？
+        .我们知道，默认情况下的v-model其实是绑定了modelValue属性和@update:modelValue的事件
+        .如果我们希望绑定更多，可以给v-model传递一个参数，那么这个参数名称就是我们绑定属性的名称
+      在15_组件的 Counter2和app.vue中有具体操作
+
 
   7.组件的混入Mixin
