@@ -20,7 +20,12 @@
 
       <!-- 2.底二种做法：动态组件 component -->
       <!-- is中的组件需要来自两个地方1.全局注册的组件2.局部注册的组件 -->
-      <component :is="tabs[currentIndex]"></component>
+      <!-- 动态组件传递数据 ，监听自定义事件-->
+      <component :is="tabs[currentIndex]" 
+                 :name="'why'" 
+                 @homeClick = "homeClick"
+                 :age='18'>
+      </component>
     </div>
   </div>
 </template>
@@ -44,6 +49,9 @@ export default {
   methods: {
     itemClick(index) {
       this.currentIndex = index
+    },
+    homeClick(payload) {
+      console.log("homeClick:", payload);
     }
   }
 }
