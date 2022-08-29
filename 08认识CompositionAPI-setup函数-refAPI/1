@@ -39,6 +39,9 @@
             1.attrs:使有的非prop的attribute
             2.slots：父组件传递过来的插槽（这个在以渲染函数返回时会有作用，后面会讲到）；
             3.emit：当我们组件内部需要发出事件时会用到emit（因为我们不能访问this，所以不可以通过this.$emit发出事件）；
+
+        2.setup函数的返回值
+          setup既然
     第一部分总结：
       一.Composition API
         1.1.options API -> Composition API
@@ -54,6 +57,8 @@
         4.对组件使用v-model的本质是什么？
 
         5.什么是Composition API？ 和之前的options API有什么区别
+
+
       
 
   2.Setup函数的基本使用
