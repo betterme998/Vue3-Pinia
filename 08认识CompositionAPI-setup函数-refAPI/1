@@ -174,3 +174,30 @@
         }
 
   6.setup中禁用this
+    1.setup不可以使用this
+      官方关于this有这样一段描述（）
+        .表达的含义是this并没有指向当前数组实例
+        .并且在setup调用之前，data，computed，methods等都没有被解析；
+        .所以无法在setup中获取this
+
+  7.computed函数使用
+  05_Setup中computed
+    .在我们前面讲解过计算属性computed：当我们的某些属性是依赖其他状态时，我们可以使用计算属性来处理
+      .在前面的Options API中，我们是使用computed选项来完成的
+      .在Composition API中，我们可以在setup函数中使用computed方法来编写一个计算属性
+    
+    .如何使用computed呢？
+      .方式一：接收一个getter函数，并为getter函数返回的值，返回一个不变的ref对象
+      .方式二：接收一个具有get和set的对象，返回一个可变（可读写）的ref对象
+  
+  
+
+  8.组件的生命周期函数
+
+  9.Provide/Inject使用
+
+  10.watch/watchEffect
+
+  11.自定义Hook联系
+
+  12.script setup语法糖
