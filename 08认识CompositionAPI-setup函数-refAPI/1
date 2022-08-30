@@ -138,5 +138,39 @@
 
 
   5.Ref知识点补充
+    04_setup中toRefs
+    1.toRefs
+      .如果我们使用ES6的解构语法，对reactive返回的对象进行解构获取值，那么之后无论是修改结构后的变量，还是修改reactive返回的state对象，数据都
+      不再是响应式的：
+
+      .那么有没有办法让我们解构出来的属性是响应式的呢？
+        Vue为我们提供了一个toRefs的函数，可以将reactive返回的对象中的属性都转成ref
+    2.toRef
+      .如果我们只希望转换一个reactive对象中的属性为ref。那么可以使用toRef方法
+
+    3.ref其他的API
+      1.unref
+        如果我们想要获取一个ref引用中的value，那么也可以通过unref方法：
+          .如果参数是一个ref，则返回内部值，否则返回参数本身
+          .这是val - isRef（val） ？ val.value : val 的语法糖
+      2.isRef 
+        判断是否是一个ref
+      
+      3.shallowRef
+        创建一个浅层的ref对象  (当我们修改嵌套的值的属性时，不会触发响应式)
+
+      4.triggerRef
+        手动触发和shallowRef相关联的副作用  （接上一个：如果想触发需要手动执行这个函数）
+      
+      3和4例子：
+        const info = shallowRef({name: "why"}); 创建了一个浅层的ref对象
+
+        ; 下面的修改不是响应式的
+        const changinfo = () => {
+          info.value.name = "betterme"
+
+          ; 手动触发 后才会是响应式的
+          triggerRef(info)
+        }
 
   6.setup中禁用this
