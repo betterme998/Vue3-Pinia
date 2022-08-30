@@ -107,6 +107,34 @@
 
         .vue3为我们提供了readonly的方法
         .readonly会返回原生对象的只读代理（也就是它依然是一个proxy，这是一个proxy，这是一个proxy的set方法被劫持，并且不能对其进行修改）
+      
+      在开发中常见的readonly方法会传入三个类型的参数
+        类型一：普通对象
+        类型二：reactive返回的对象
+        类型三：ref对象
+      
+      在readonly的使用过程中，有如下规则
+        readonly返回的对象都是不允许修改的；
+        但是经过readonly处理的原来的对象是允许被修改的
+          .比如const info = readonly(obj),info对象是不允许被修改的；
+          .当obj被修改时，readonly返回的对象也会被修改；
+          .但是我们不能去修改readonly返回的对象info
+        
+        其实本质上就是readonly返回的对象的setter方法被劫持了而已
+    
+    2.Reactive判断的API
+      1.isProxy
+        检查对象是否由reactive或readonly创建的proxy
+      2.isReactive
+        检查对象是否是由reactive创建的响应式代理
+        如果该代理是readonly创建的，但包裹了由reactive创建的另一个代理，它也会返回true
+      3.isReadonly
+        检查对象是否由readonly创建的只读代理
+      4.toRaw
+        返回reactive或readonly代理的原始对象（不建议保留对原始的持久引用，请慎重使用）
+
+      5.shallowReactive   （就是默认reactive会监听深层的变化，使用shallowReactive只监听浅层的变化，嵌套的对象里面的属性发生改变就不会监听到）
+        创建一个响应式代理，它跟踪其自身property的响应性，但不执行嵌套对象的深层响应式转换（深层还是原生对象）
 
 
   5.Ref知识点补充

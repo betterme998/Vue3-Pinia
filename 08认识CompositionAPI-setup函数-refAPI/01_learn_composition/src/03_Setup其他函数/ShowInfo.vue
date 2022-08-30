@@ -12,27 +12,50 @@
     <!-- 代码没有错，但违背了单项数据流的规范 -->
     <button @click="info.name = 'kobi'">ShowInfo不规范按钮</button>
 
-    <!-- 正确做法 -->
+    <!-- 正确做法 :符合单项数据流-->
     <button @click="showInfobtnClick">ShowInfo规范按钮</button>
+    <hr>
+
+    <!-- 使用readonly的数据 -->
+    <h2>ShowInfo: {{ roInfo }}</h2>
+    <!-- 不规范按钮，会报警告 -->
+    <button @click="roInfo.name = 'kobi'">ShowInfo不规范按钮,但是传过来的值被readonly包裹，所以改不了</button>
+
+    <!-- 正确做法 -->
+    <button @click="roInfobtnClick">roInfo规范按钮</button>
+
   </div>
 </template>
 
 <script>
   export default {
     props: {
+      // reactive数据
       info:{
         type: Object,
         default: () => ({})
+      },
+      // readonly数据
+      roInfo:{
+        type:Object,
+        default: () => ({})
       }
     },
-    emits:["changeInfo"],
+    emits:["changeInfo", "changeRoInfoName"],
     setup(props, context) {
       function showInfobtnClick() {
         // setup里面没有this。
         context.emit("changeInfo", "kobe")
       }
+
+      function roInfobtnClick() {
+        // setup里面没有this。
+        context.emit("changeRoInfoName", "james")
+      }
+      
       return {
-      showInfobtnClick
+      showInfobtnClick,
+      roInfobtnClick
     }
     }
   }
