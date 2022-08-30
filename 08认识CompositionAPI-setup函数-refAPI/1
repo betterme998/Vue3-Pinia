@@ -198,7 +198,31 @@
     1.生命周期钩子 
       我们前面说过setup可以用来替代data，methods，computed 等等这些选项，也可以代替生命周期钩子
 
-  9.Provide/Inject使用
+      那么setup中如何使用生命周期函数呢？
+        可以使用直接导入的onX函数注册生命周期钩子
+      
+      <!-- 
+      选项式API （vue2）    Hook inside  setup (钩子 内部 设置)vue3
+      beforeCreate         Not needed (不在需要)
+      created              Not needed
+      beforeMounte         onBeforMounte
+      mounted              onMounted
+      beforeUpdate         onBeforUpdate
+      updated              onUpdated
+      beforUnmount         onBeforUnmount
+      unmounted            onUnmounted
+      activated            onActivated
+      deactivated          onDeactivated
+     -->
+     <!--beforeCreate和 created不在需要
+      因为setup是围绕beforeCreate和 created生命周期钩子运行的，所以不需要显示的定义他们，换句话说，在这两个钩子中编写
+      的代码都应该直接在setup函数中编写
+
+  9.Provide/Inject使用  provide（提供） Inject（投入，注射）
+    1.Provide函数
+      事实上我们之前还学习过provide和inject，Composition API也可以代替之前的Provide 和 Inject的选项。
+      
+
 
   10.watch/watchEffect
 
