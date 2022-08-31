@@ -6,7 +6,9 @@ import { createApp } from 'vue'
 // import App from './04_Setup中toRefs/App.vue'
 // import App from './05_Setup中computed/App.vue'
 // import App from './06_Setup中ref引入元素/App.vue'
-import App from './07_Setup生命周期函数/App.vue'
+// import App from './07_Setup生命周期函数/App.vue'
+import App from './08_Setup-Provide-Inject/App.vue'
+
 
 
 

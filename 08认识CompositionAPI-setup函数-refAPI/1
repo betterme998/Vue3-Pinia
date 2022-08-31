@@ -221,6 +221,19 @@
   9.Provide/Inject使用  provide（提供） Inject（投入，注射）
     1.Provide函数
       事实上我们之前还学习过provide和inject，Composition API也可以代替之前的Provide 和 Inject的选项。
+      我们可以通过provide来提供数据
+        可以通过provide方法来定义每个Property
+      .provide可以传入两个参数：
+        name：提供的属性名称；
+        value：提供的属性值
+    2.Inject函数
+      在后代组件中可以通过inject来注入需要的属性和对应的值
+        可以通过inject来注入需要的内容；
+      inject可以传入两个参数：
+        要inject得property的name
+        默认值
+    3.数据的响应式
+      为了增加provide值和inject直接的响应性，我们可以在provide值使用ref和reactive
       
 
 
