@@ -26,6 +26,16 @@
 
     <!-- 使用动态组件 -->
     <component :is="currentPage"></component>
+
+
+    <!-- 3.实时动态获取当前滚动条位置 -->
+      <!-- 我们来完成一个监听界面滚动位置的Hook -->
+      <!-- 1.在hools里创建useScrollPostion.js文件 -->
+      <br><br><br><br><br><br>
+      <br>
+      <br>
+      <br>
+      <br>
   </div>
 </template>
 
@@ -35,6 +45,8 @@
   import AboutVue from './views/About.vue';
 
   import useTitle from './hooks/useTitle';
+
+  import useScrollPosition from './hooks/useScrollPostion'
 export default {
   components:{
     HomeVue,
@@ -61,6 +73,7 @@ export default {
       currentPage.value = 'AboutVue'
       title.value = "关于"
     }
+    useScrollPosition()
     return {
       changTitle,
       currentPage,
