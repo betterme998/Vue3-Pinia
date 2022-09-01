@@ -8,8 +8,12 @@
 
 <script>
   import useCounter from '../hooks/useCounter';
+import useTitle from '../hooks/useTitle';
 export default {
   setup() {
+
+    // 修改标题
+    useTitle("关于")
     return {
       ...useCounter()
     }
