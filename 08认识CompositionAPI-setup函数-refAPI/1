@@ -287,3 +287,78 @@
       .使用<script setup>的组件时默认关闭的：
         通过ref或者$parent链获取到的组件的公开实例，不会暴露任何在<script setup>中声明的绑定
       .通过defineExpose编译器宏来显示指定在<script setup>组件中要暴露出去的property
+
+    内容回顾
+      一.Composition API (一)
+      1.1使用reactive定义响应式数据
+        .复杂类型
+      1.2使用ref定义响应式数据
+        .基本类型
+        .复杂类型
+        .在template自动解包 ，浅层解包
+          
+      1.3.开发中选择reactive/ref
+
+      1.4.readonly的使用
+        1.4.1.单项数据流
+
+
+      1.5.reactive函数补充
+        .isProxy
+        .isReactive
+        .shallowReactive
+        .shallowRef
+        isReadonly
+
+      1.6.ref函数补充
+        ·toRefs
+        .toRef
+        .unref
+        .toRaw
+        ....
+
+      1.7.setup中不能使用this
+
+      二.Composition API (二)
+      2.1.computed计数属性(重点)
+
+      2.2.ref获取元素/组件（半个重点）
+
+      2.3.生命周期函数（重点）
+
+      2.4.Provide/Inject
+
+      2.5.watch/watchEffect（半个重点）
+        .watch/watchEffect区别
+          .watch必须指定数据源，watchEffect自动收集依赖
+          .watch监听到数据改变，可以拿到改变前后value
+          .watchEffect默认直接执行一次，watch在不设置immediate第一次不执行
+      2.6.自定义Hooks的练习（思想）
+        2.6.1.useCounter (三个案例封装的Hooks)
+
+        2.6.2.useTitle (三个案例封装的Hooks)
+
+        2.6.3.useScrollPosition (三个案例封装的Hooks)
+
+      2.7.script setup语法糖（重要）
+        .defineProps
+        .defineExpose
+        .defineEmits
+
+    作业：
+      一：ref和reactive有什么区别？开发中如何选择？
+
+      二：整理Composition API常见的几个函数用法
+        .ref 
+        .reactive
+        .computed
+        .生命周期
+        .watch
+        .watchEffect
+      
+      三.watch和watchEffect有什么区别
+
+      四.说说script setup 语法糖的常见用法
+
+    
+
