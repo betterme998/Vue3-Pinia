@@ -73,7 +73,6 @@ export default {
       currentPage.value = 'AboutVue'
       title.value = "关于"
     }
-    useScrollPosition()
     return {
       changTitle,
       currentPage,

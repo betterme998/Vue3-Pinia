@@ -9,6 +9,12 @@
     <button @click="popularClick">首页-流行</button>
     <button @click="hotClick">首页-热门</button>
     <button @click="songClick">首页-歌单</button>
+    <hr>
+
+    <div class="scroll">
+      <h2>x:{{ srcollPosition.x }}</h2>
+      <h2>x:{{ srcollPosition.y }}</h2>
+    </div>
   </div>
 </template>
 
@@ -18,6 +24,8 @@
   // 导入抽取出去的函数
   import useCounter from '../hooks/useCounter';
 import useTitle from '../hooks/useTitle';
+// 导入获取滚动条位置hooks
+import useScrollPosition from '../hooks/useScrollPostion';
 export default {
   setup() {
     // 下面代码逻辑就是计数器的代码，compositionAPI把他们放到一起，不想以前那么分散
@@ -50,6 +58,9 @@ export default {
       title.value = "首页-歌单"
     }
 
+    // 4.获取滚动的位置
+    const { srcollPosition } = useScrollPosition()
+
     return {
       counter,
       increment,
@@ -57,7 +68,8 @@ export default {
       title,
       popularClick,
       hotClick,
-      songClick
+      songClick,
+      srcollPosition
     }
   }
 }

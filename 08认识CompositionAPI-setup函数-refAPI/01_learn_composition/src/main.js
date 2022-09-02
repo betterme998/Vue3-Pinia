@@ -9,8 +9,8 @@ import { createApp } from 'vue'
 // import App from './07_Setup生命周期函数/App.vue'
 // import App from './08_Setup-Provide-Inject/App.vue'
 // import App from './09_Setup-侦听数据变化/App.vue'
-// import App from './10_Setup-Hooks练习/App.vue'
-import App from './11_script_setup语法/App.vue'
+import App from './10_Setup-Hooks练习/App.vue'
+// import App from './11_script_setup语法/App.vue'
 
 
 
