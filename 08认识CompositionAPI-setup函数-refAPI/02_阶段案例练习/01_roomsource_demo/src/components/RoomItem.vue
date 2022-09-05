@@ -5,8 +5,9 @@
         <img :src="itemData.picture_url" alt="">
       </div>
       <div class="info">
-        <div class="title">
-          {{ "太麻烦了，待会说 TODO" }}
+        <div class="title" :style="{ color: titleInfo.color}">
+          <!-- 这里数据复杂，使用计算属性 -->
+          {{ titleInfo.text }}
         </div>
         <div class="name">
           {{ itemData.name }}
@@ -14,8 +15,8 @@
         <div class="price">
           {{ itemData.price_format + "/晚" }}
         </div>
-        <div class="bottom-info">
-          {{ itemData.bottom_info.content }}
+        <div class="bottom-info" :style="bottomInfo.style">
+          {{ bottomInfo.content }}
         </div>
       </div>
     </div>
@@ -23,11 +24,41 @@
 </template>
 
 <script setup>
-  defineProps({
+import { computed } from '@vue/reactivity';
+
+  // 1.定义props
+  const props = defineProps({
     itemData:{
       type:Object,
       // 对象类型要写箭头函数
       default: () => ({})
+    }
+  })
+
+  // 2.定义计算属性
+  // 比较复杂的逻辑最好使用计算属性
+  // const titleText = computed(() => {
+  //   return props.itemData.verify_info.messages.join(" ")
+  // })
+  // // 绑定时间
+  // const titleColor = computed(() => {
+  //   return props.itemData.verify_info.text_color
+  // })
+
+  const titleInfo = computed(() => {
+    return {
+      text:props.itemData.verify_info.messages.join(" "),
+      color:props.itemData.verify_info.text_color
+    }
+  })
+
+  const bottomInfo = computed(() => {
+    return {
+      content: props.itemData.bottom_info.content,
+      style: {
+        color:props.itemData.bottom_info.content_color,
+        fontSize:props.itemData.bottom_info.font_size + 'px'
+      }
     }
   })
 </script>
