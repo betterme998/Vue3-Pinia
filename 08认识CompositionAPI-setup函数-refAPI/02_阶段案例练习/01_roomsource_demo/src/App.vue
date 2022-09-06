@@ -8,8 +8,17 @@
 </template>
 
 <script setup>
+  import { ref } from "vue"
   // 1.获取数据
-  import highScore from "./data/high_score.json"
+  // import highScore from "./data/high_score.json"
+  // 模拟网络请求数据数据
+  const highScore = ref({})
+  setTimeout(() => {
+    // import返回的是一个promise
+    import("./data/high_score.json").then(res => {
+      highScore.value = res.default
+    })
+  },1000)
   
   // 引入区域
   import RoomArea from "./components/RoomArea.vue"
