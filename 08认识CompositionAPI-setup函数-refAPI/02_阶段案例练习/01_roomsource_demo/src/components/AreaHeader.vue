@@ -29,7 +29,7 @@
         color: #000;
       }
 
-      .subtitle {
+     .subtitle {
         font-size: 14px;
         margin-top: 12px;
         color: #333;
