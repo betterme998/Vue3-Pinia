@@ -10,7 +10,11 @@
       <router-link to="/home" replace>首页</router-link>
       <!-- <router-link to="/about">关于</router-link> -->
       <!-- to属性传入对象  一般不传对象-->
-      <router-link to="{ path: '/about'}">关于</router-link>
+      <router-link to="/about">关于</router-link>
+      <!-- 切换到用户的路径不是简单的/user, 应该是/user/xxx  这时要使用动态路由 -->
+      <router-link to="/user/123">用户</router-link>
+      <router-link to="/user/321">用户2</router-link>
+
     </div>
     <!-- 用来展位的 -->
     <router-view></router-view>
@@ -87,5 +91,20 @@
      <!-- 路由的其他属性
       .name属性：路由记录独一无二的名称；
       .meta属性：自定义的数据
-      
+
+    -->
+
+    <!-- 动态路由基本匹配
+      .很多时候我们需要将给定匹配模式的路由映射到同一个组件
+        .例如，我们可能有一个User组件，它应该对所有用户进行渲染，但是用户的id是不同的；
+        .在vue Router中，我们可以在路径中使用动态字段实现，我们称之为 路径参数；
+
+      .在router-link中的to路径后面加上参数
+
+      获取动态路由的值
+      .那么在User中如何获取到对应的值呢？
+        .在template中，直接通过$ROUTE.params获取值；
+          在created中，通过this.$route.params获取值；
+          在setup中，我们要使用vue-router库给我们提供的一个hook useRoute；
+            该Hook会返回一个route对象，对象中保存着当前路由相关的值
     -->

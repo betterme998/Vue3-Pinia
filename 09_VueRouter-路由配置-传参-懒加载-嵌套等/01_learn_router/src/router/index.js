@@ -46,6 +46,13 @@ const router = createRouter({
       path: "/about",
       // 路由懒加载
       component: () => import(/* webpackChunkName: 'about' */"../Views/About.vue")
+    },
+    {
+      // 动态路由
+      // 用户的path路径不能写死，要加上/:id
+      // 动态路由的路径不是写死的
+      path: "/user/:id",
+      component: () => import("../Views/User.vue")
     }
 
   ]
