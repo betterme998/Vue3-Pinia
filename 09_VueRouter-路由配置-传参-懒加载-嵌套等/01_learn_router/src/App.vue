@@ -108,3 +108,11 @@
           在setup中，我们要使用vue-router库给我们提供的一个hook useRoute；
             该Hook会返回一个route对象，对象中保存着当前路由相关的值
     -->
+
+    <!-- NotFound
+      对于那些没有匹配到的路由，我们通常会匹配到固定某个页面
+        .比如NotFound的错误页面中，这个时候我们可编写一个动态路由用于匹配所有的页面；
+      
+      .我们可以通过$route.params.pathMatch获取传入的参数：
+        
+    -->

@@ -53,6 +53,16 @@ const router = createRouter({
       // 动态路由的路径不是写死的
       path: "/user/:id",
       component: () => import("../Views/User.vue")
+    },
+    {
+      // notfound
+      // 如果匹配到任何不存在的路径，就自动显示下面的组件
+      // pathMatch路径匹配，上面匹配不到的路径全部使用这个组件
+      // path: "/:pathMatch(.*)",
+      // 当我们在小括号后面加上*，就会对路径进行解析，组件内通过$route.params.pathMatch拿到的就是一个数组。已/进行分隔组成的数组
+      path: "/:pathMatch(.*)*",
+
+      component: () => import("../Views/NotFound.vue")
     }
 
   ]
