@@ -40,7 +40,22 @@ const router = createRouter({
       meta: {
         name:"why",
         age:18
-      }
+      },
+      // 嵌套路由
+      children: [
+        {
+          path:"/home",//当这里为空路径时，推荐使用name
+          redirect: "/home/recommend"
+        },
+        {
+          path:"recommend",//相当于/home/recommend
+          component: () => import("../Views/HomeRecommend.vue")
+        },
+        {
+          path:"ranking",//相当于/home/ranking
+          component: () => import("../Views/HomeRanKing.vue")
+        }
+      ]
     },
     { 
       path: "/about",
