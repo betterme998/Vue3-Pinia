@@ -15,6 +15,9 @@
       <router-link to="/user/123">用户</router-link>
       <router-link to="/user/321">用户2</router-link>
 
+      <!-- 其他元素跳转 -->
+      <span @click="homespanClick">首页</span>
+      <button @click="aboutBtnClick">关于</button>
     </div>
     <!-- 用来展位的 -->
     <router-view></router-view>
@@ -22,7 +25,31 @@
 </template>
 
 <script setup>
+// 拿到router
+import { useRouter } from "vue-router"
+const router = useRouter()
 
+  // 监听元素的点击
+  function homespanClick() {
+    // 跳转到首页
+    // router.push("/home")
+    router.push({
+      path: "/home"
+    })
+  }
+  function aboutBtnClick() {
+    // 跳转到关于
+    // router.push("/about")
+    router.push({
+      path: "/about",
+      // 传入参数
+      query:{
+        name:"why",
+        age:18
+      }
+    })
+
+  }
 </script>
 
 <style>
@@ -123,4 +150,28 @@
       .但是，我们Home页面本身，也可能会在多个组件之间来回切换
         .比如Home包括Product，Message，它们可以在Home内部来回切换；
         .这个时候我们就需要使用嵌套路由，在Home中也使用router-view来占位之后需要渲染的组件
+    -->
+
+    <!-- 编程式导航
+      代码的页面跳转
+
+      query方式的参数
+      .我们也可以通过query的方式来传递参数；
+      .在界面中通过$route.query来获取参数
+    -->
+
+    <!-- 
+      替换当前的位置
+      使用push的特点是压入一个新的页面，那么在用户点击返回时，上一个页面还可以回退，但是如果我们希望当前页面是一个替换操作。那么可以使用replace
+     -->
+
+     <!-- 动态添加路由
+      .某些情况下我们可能需要动态的来添加路由
+        .比如根据用户不同的权限，注册不同的路由
+        .这个时候我们可以使用一个方法addRoute；
+
+      .如果我们是为route添加一个children路由。那么可以传入对应的name
+
+      动态管理路由的其他方法（了解）
+      
     -->
