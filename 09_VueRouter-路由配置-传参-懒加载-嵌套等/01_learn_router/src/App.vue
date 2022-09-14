@@ -14,6 +14,8 @@
       <!-- 切换到用户的路径不是简单的/user, 应该是/user/xxx  这时要使用动态路由 -->
       <router-link to="/user/123">用户</router-link>
       <router-link to="/user/321">用户2</router-link>
+      <!-- 在实际中，跳转到订单页面有前提条件，必须登录 -->
+      <router-link to="/order">订单</router-link>
 
       <!-- 其他元素跳转 -->
       <span @click="homespanClick">首页</span>

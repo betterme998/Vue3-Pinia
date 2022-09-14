@@ -70,6 +70,27 @@ const router = createRouter({
       component: () => import("../Views/User.vue")
     },
     {
+      path: "/order",
+      component: () => import("../Views/Order.vue")
+      // 进入订单页面
+      // 1.判断用户是否登录
+      /* 
+        2.根据逻辑进行不同的处理
+          登录成功
+            .直接进入订单页面
+          没有登录
+            .直接进入登录页面
+            .用户登录成功，进入首页，在点击进入订单页面
+      */
+    //  上面这部分逻辑放到哪里？
+    // 我们使用路由导航守卫
+          
+    },
+    {
+      path: "/login",
+      component: () => import("../Views/Login.vue")
+    },
+    {
       // notfound
       // 如果匹配到任何不存在的路径，就自动显示下面的组件
       // pathMatch路径匹配，上面匹配不到的路径全部使用这个组件
@@ -82,6 +103,76 @@ const router = createRouter({
 
   ]
 })
+
+// 动态管理路由
+// 本来要先登录，拿到角色，这里直接写死
+// 当不是管理员时isAdmin为false
+let isAdmin = true
+// 判断是否是管理员
+if (isAdmin) {
+  // 添加一个路由
+  // 一级路由
+  router.addRoute({
+    path: "/admin",
+    component: () => import("../Views/Admin.vue")
+  })
+
+  // 添加二级路由
+  router.addRoute("home", {
+    path: "vip",
+    component: () => import("../Views/HomeSongs.vue")
+  })
+}
+
+// 动态管理路由其他方法（了解）
+// 删除路由有以下三种方法
+// 方式一：添加一个name相同的路由，（之前叫name的路由会被覆盖掉）
+// 方式二：通过removeRoute方法，传入路由的名称  router.removeRoute('about')
+// 方式三：通过addRoute方法的返回值回调；
+// const removeRoute = router.addRoute(routeRecord)
+// removeRoute() 删除路由如果路由存在的话
+
+
+// 路由的其他方法补充：
+// router.hasRoute():检查路由是否存在
+// router.getRoutes();获取一个包含所有路由记录的数组
+
+
+// 路由导航守卫
+  /*
+    路由导航：从一个路由到另一个路由就是路由导航。
+    守卫：就是拦截导航过程加上一次判断逻辑
+    vue提供了拦截函数
+    vue-router提供的导航守卫主要用来通过跳转或取消的方式守卫导航
+    全局的前置守卫beforeEach是在导航触发时会被回调的；
+    它有两个参数：
+      .to：即将进入的路由Route对象
+      .from： 即将离开的路由Route对象
+    
+    它有返回值
+      false：取消当前导航
+      不返回或undefined：进行默认导航
+      返回一个路由地址：
+        .可以是一个string类型的路径
+        .可以是一个对象，对象中包含path，query，params等信息
+  */
+
+    // 拿到router,调用beforeEach （进行任何的路由跳转之前，传入的beforeEach中的函数都会被回调）
+    router.beforeEach((to, from) => {
+      console.log("beforeEach传入的函数被回调");
+      // 需求：进入订单页面是，判断用户是否登录（登录成功localStorage保存token）
+      // 情况一：用户没有登陆，那么跳转到登录页面登录
+      // 情况二：用户已经登录，那么直接进入到订单也面
+      // 1.进入任何页面，都跳转到登录页面
+      // if(to.path !== "/login"){
+      //   return "/login"
+      // }
+      // 2.进入订单管理页面时，判断用户是否登录
+      const token = localStorage.getItem("token")
+      if(!token && to.path === "/order") {
+        return "/login"
+      }
+    })
 
 // 2.导出router，并在main.js中使用
 export default router
