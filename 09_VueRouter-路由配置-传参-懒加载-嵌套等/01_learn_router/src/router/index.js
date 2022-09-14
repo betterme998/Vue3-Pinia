@@ -155,6 +155,8 @@ if (isAdmin) {
       返回一个路由地址：
         .可以是一个string类型的路径
         .可以是一个对象，对象中包含path，query，params等信息
+
+    可选的第三个参数：next（不推荐使用）
   */
 
     // 拿到router,调用beforeEach （进行任何的路由跳转之前，传入的beforeEach中的函数都会被回调）
@@ -169,10 +171,36 @@ if (isAdmin) {
       // }
       // 2.进入订单管理页面时，判断用户是否登录
       const token = localStorage.getItem("token")
-      if(!token && to.path === "/order") {
+      if( to.path === "/order" && !token) {
         return "/login"
       }
     })
+  
+  // 其他导航守卫
+  // vue-router还提供了很多的其他守卫函数，目的都是在某一个时刻给予我们回调，让我们可以更好的控制程序的流程或者功能；
+  
+  /*
+    完整的导航解析流程
+    导航被触发。
+    在失活的组件里调用beforeRouteLeave守卫 （离开这个组件时跳转触发的回调）
+    调用全局的beforeEach守卫
+    在重用的组件里调用beforeRouteUpdata守卫
+    在路由配置里调用beforeEnter （ router:[{path:'',component:'' beforeEnter(){} }]   ）
+    解析异步路由组件   () => import("./viewa/xxxx.vue")
+    在被激活的组件里调用beforeRouteEnter （this -> 获取不到组件实例的）
+    beforeRouteEnter（next）{
+      // 传入回调函数，这会在最后被回调
+      // instance是组件实例
+      next((instance) =>{
+
+      })
+    }
+    调用全局的beforeResolve (异步组件被解析之后，在跳转之前 回调的函数)
+    导航被确认 
+    调用全局的afterEach钩子 
+    出发DOM更新
+    调用beforRouteEnter守卫中传给next的回调函数，创建好的组件实例会作为回调函数的参数传入
+  */ 
 
 // 2.导出router，并在main.js中使用
 export default router
