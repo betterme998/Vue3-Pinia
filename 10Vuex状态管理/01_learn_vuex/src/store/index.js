@@ -14,7 +14,10 @@ import { createStore } from 'vuex'
 const store = createStore({
   state() {
     return {
-      counter: 100
+      counter: 100,
+      name: "betterme",
+      level:100,
+      avatarURL: "http://xxxx"
     }
   },
   mutations: {
@@ -25,7 +28,7 @@ const store = createStore({
   }
 })
 
-// 导出store
+
 // 2.组件中使用store
 /* 
   .在组件中使用store，我们按照如下的方式：
@@ -33,4 +36,21 @@ const store = createStore({
     .在options api中使用，比如computed
     .在setup中使用
 */ 
+
+/*
+  单一状态树
+  Vuex使用单一状态树
+    .用一个对象就包含了全部的应用层级的状态；（永远只有一个store）
+    .采用的是SSOT,Single Source of Truth,也可以翻译成单一数据源
+  .这意味着，每个应用将仅仅包含一个store实例
+    .单状态树和模块化并不冲突，后面我们会讲到module的概念；
+  .单一状态树的优势；
+    .如果你的状态信息是保存到多个Store对象中，那么之后的管理和维护等等都会变得特别困难；
+    .所以Vuex也使用了单一状态树来管理应用层级的全部状态
+    .单一状态树能够让我们最直接的方式找到某个状态的片段
+    .而且在之后的维护和调试过程中，也可以非常方便的管理和维护
+  但是单一状态树不够灵活。
+*/ 
+
+// 导出store
 export default store
