@@ -24,7 +24,8 @@
 三.核心概念State
 
 四.核心概念Getters
-
+  getters的基本使用
+  getters相应的computed，当我们希望数据改变之后再传给别人使用时使用getters
 五.核心概念Mutations
 
 六.核心概念Actions

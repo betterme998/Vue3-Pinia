@@ -17,7 +17,48 @@ const store = createStore({
       counter: 100,
       name: "betterme",
       level:100,
-      avatarURL: "http://xxxx"
+      avatarURL: "http://xxxx",
+      friends:[
+        {id:111, name: "betterme", age: 18},
+        {id:112, name: "why", age: 28},
+        {id:113, name: "james", age: 25},
+      ]
+    }
+  },
+  // 某些属性我们可能需要变化后来使用，这个时候可以使用getters，
+  // getters第二个参数 getters
+  // getters 返回值
+  getters: {
+    // 1.getters基本使用
+    // 传入state
+    doubleCounter(state) {
+      // 返回两倍的conuter
+      return state.counter * 2
+    },
+    // 获得所有年龄的和
+    totalAge (state) {
+      return state.friends.reduce((preValue, item) => {
+        return preValue + item.age
+      }, 0)
+    },
+    // 2.在getters中使用另一个getters
+    // 显示用户信息，拼接字符串
+    // 可传第二个参数 getters,可拿到其他getters
+    message(state, getters) {
+      // 在getter属性中获取其他getter
+      return `name:${state.name} level:${state.level} friendTotalAge:${getters.totalAge}`
+    },
+
+    // 根据id获取信息
+    // 3.getter返回函数用法，另一个地方调用函数传入参数
+    getFriendId(state) {
+      // 返回一个函数并可传参，这样组件拿到getFriendId就可以动态传值
+      // find()组件的方法，返回是一个组件中存在的值
+      return function(id) {
+        const friend = state.friends.find(item => item.id === id)
+        return friend
+      }
+      
     }
   },
   mutations: {
