@@ -1,1 +1,1 @@
-export const CHANGE_INFO = "CHANGE_INFO"
+export const CHANGE_INFO = "changeinfo"
