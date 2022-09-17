@@ -27,7 +27,8 @@
   getters的基本使用
   getters相应的computed，当我们希望数据改变之后再传给别人使用时使用getters
 五.核心概念Mutations
-
+  Mutation基本使用
+  .更改Vuex的store中的状态的唯一方法是提交mutation
 六.核心概念Actions
 
 七.核心概念Modules

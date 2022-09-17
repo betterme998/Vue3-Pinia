@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { CHANGE_INFO } from './mutation_types'
 
 // 1.创建store
 /*
@@ -65,6 +66,16 @@ const store = createStore({
     // 把state传入
     increment(state) {
       state.counter++
+    },
+    changeName(state, payload) {
+      state.name = payload
+    },
+    incrementLevel(state){
+      state.level++
+    },
+    [CHANGE_INFO](state, newInfo) {
+      state.level = newInfo.level
+      state.name = newInfo.name
     }
   }
 })
