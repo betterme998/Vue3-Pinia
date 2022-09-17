@@ -50,11 +50,12 @@ const store = useStore()
   // // 和mapState一样要改变这个函数this的指向
   // const message = computed(messageFn.bind({ $store: store }))
 
-  // 3.推荐：直接解构拿到要getter的函数
+  // 3.推荐：直接解构拿到要getter的函数，并且包裹成ref
   // 因为直接赋值不是响应式数据，所以使用toRefs进行转换
-  // const { message } = toRefs(store.getters) 这会报警告使用下面方法
-  const message = computed(() => {store.getters.message})
+  // const { message } = toRefs(store.getters)这会报警告使用下面方法
 
+  // 4.针对某一个getters属性使用computed
+  const message = computed(() => {store.getters.message})
 
   // 修改数据看看是不是响应式
   function changeAge() {
