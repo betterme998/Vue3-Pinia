@@ -39,3 +39,6 @@
     .所以我们可以从中获取到commit方法来提交一个mutation，或者通过context.state和 context.getters来获取state和getters
   .但是为什么它不是store对象呢？这个等到讲Modules时具体说
 七.核心概念Modules
+  module的基本使用
+  随着项目越来越大，store体积也会非常庞大
+  我们需要拆解state，吧store进行分模块

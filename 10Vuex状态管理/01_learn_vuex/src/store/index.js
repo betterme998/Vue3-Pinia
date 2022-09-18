@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import { CHANGE_INFO } from './mutation_types'
+// 引入收取出去的modules
+import homeModule from './modules/home'
 
 // 1.创建store
 /*
@@ -25,10 +27,6 @@ const store = createStore({
         {id:112, name: "why", age: 28},
         {id:113, name: "james", age: 25},
       ],
-
-      // 2.服务器数据
-      banner:[],
-      recommend:[]
     }
   },
   // 某些属性我们可能需要变化后来使用，这个时候可以使用getters，
@@ -82,13 +80,7 @@ const store = createStore({
       state.level = newInfo.level
       state.name = newInfo.name
     },
-    // 保存服务器数据
-    changeBanners(state, banner) {
-      state.banner = banner
-    },
-    changeRecommends(state, recommend) {
-      state.recommend = recommend
-    }
+   
   },
   actions: {
     /*
@@ -122,32 +114,40 @@ const store = createStore({
     },
 
     // 请求首页的数据
-    fetchHomeMultidataAction(context) {
-      // 1.返回Promise，给Promise设置then
-      // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
-      //   res.json().then(data => {
-      //     console.log(data);
-      //   })
-      // })
-      // 2.Promise链式调用
-      // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
-      //   return res.json()
-      // }).then(data => {
-      //   console.log(data);
-      // })
+    // fetchHomeMultidataAction(context) {
+    //   // 1.返回Promise，给Promise设置then
+    //   // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
+    //   //   res.json().then(data => {
+    //   //     console.log(data);
+    //   //   })
+    //   // })
+    //   // 2.Promise链式调用
+    //   // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
+    //   //   return res.json()
+    //   // }).then(data => {
+    //   //   console.log(data);
+    //   // })
 
-      // 手动返回一个promise，为了让使用的地方知道请求结束。
-      return new Promise( async (resolve, reject) => {
-        // 3.await/async   要在函数前面加上异步 async 异步函数一定返回promise
-      const res = await fetch("http://123.207.32.32:8000/home/multidata")
-      const data = await res.json()
+    //   // 手动返回一个promise，为了让使用的地方知道请求结束。
+    //   return new Promise( async (resolve, reject) => {
+    //     // 3.await/async   要在函数前面加上异步 async 异步函数一定返回promise
+    //   const res = await fetch("http://123.207.32.32:8000/home/multidata")
+    //   const data = await res.json()
       
-      // 修改state数据
-      context.commit("changeBanners", data.data.banner.list)
-      context.commit("changeRecommends",data.data.recommend.list)
-      resolve(data.data)
-      })
-    }
+    //   // 修改state数据
+    //   context.commit("changeBanners", data.data.banner.list)
+    //   context.commit("changeRecommends",data.data.recommend.list)
+    //   resolve(data.data)
+    //   })
+    // }
+  },
+  modules: {
+    // .什么是Module？
+    // 由于使用单一状态树，应用的所有状态会集中到一个比较大的对象，当应用变得非常复杂时，store对象就可能变得相对臃肿；
+    // 为了解决以上问题，Vuex允许我们将store分隔成模块（module）
+    // .每个模块拥有自己的state，mutation，action，getter
+    // 在store文件夹下创建modules文件夹来抽取
+    home: homeModule
   }
 })
 
