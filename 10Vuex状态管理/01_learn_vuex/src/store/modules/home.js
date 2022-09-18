@@ -7,6 +7,10 @@ export default {
   }),
   mutations: {
      // 保存服务器数据
+    /*
+     module的局部状态
+      .对于模块内部mutation和getter，接收的第一个参数是模块的局部状态对象
+    */  
     changeBanners(state, banner) {
       state.banner = banner
     },

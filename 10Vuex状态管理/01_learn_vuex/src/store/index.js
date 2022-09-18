@@ -3,6 +3,9 @@ import { CHANGE_INFO } from './mutation_types'
 // 引入收取出去的modules
 import homeModule from './modules/home'
 
+// 引入counter
+import counterModule from "./modules/counter"
+
 // 1.创建store
 /*
   每一个Vuex应用的核心就是store（仓库）
@@ -147,7 +150,12 @@ const store = createStore({
     // 为了解决以上问题，Vuex允许我们将store分隔成模块（module）
     // .每个模块拥有自己的state，mutation，action，getter
     // 在store文件夹下创建modules文件夹来抽取
-    home: homeModule
+    /*
+      module的局部状态
+      .对于模块内部mutation和getter，接收的第一个参数是模块的局部状态对象
+    */ 
+    home: homeModule,
+    counter: counterModule
   }
 })
 
