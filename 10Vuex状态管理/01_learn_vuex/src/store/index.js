@@ -77,6 +77,29 @@ const store = createStore({
       state.level = newInfo.level
       state.name = newInfo.name
     }
+  },
+  actions: {
+    /*
+    actions的基本使用
+  .Action类似于mutation，不同在于：
+    .Action提交的是mutation，而不是直接变更状态；
+    .Action可以包含任意异步操作
+  .这里有一个非常重要的参数context：
+    .context是一个和store实例均有相同方法和属性的context对象；
+    .所以我们可以从中获取到commit方法来提交一个mutation，或者通过context.state和 context.getters来获取state和getters
+  .但是为什么它不是store对象呢？这个等到讲Modules时具体说
+    */ 
+  //  actions定义的函数接收context 类似于 state
+   incrementAction(context) {
+    console.log(context.commit);// 在actions中提交mutation
+    console.log(context.getters);// 拿到getters
+    console.log(context.state);// 拿到gstate
+    context.commit("increment")
+   },
+  //  可传入参数
+  changeNameAction(context, payload) {
+    context.commit("changeName", payload.name)
+  }
   }
 })
 

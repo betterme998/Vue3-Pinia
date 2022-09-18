@@ -30,5 +30,12 @@
   Mutation基本使用
   .更改Vuex的store中的状态的唯一方法是提交mutation
 六.核心概念Actions
-
+  actions的基本使用
+  .Action类似于mutation，不同在于：
+    .Action提交的是mutation，而不是直接变更状态；
+    .Action可以包含任意异步操作
+  .这里有一个非常重要的参数context：
+    .context是一个和store实例均有相同方法和属性的context对象；
+    .所以我们可以从中获取到commit方法来提交一个mutation，或者通过context.state和 context.getters来获取state和getters
+  .但是为什么它不是store对象呢？这个等到讲Modules时具体说
 七.核心概念Modules
