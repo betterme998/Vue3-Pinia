@@ -15,6 +15,7 @@ import { CHANGE_INFO } from './mutation_types'
 const store = createStore({
   state() {
     return {
+      // 1.模拟数据
       counter: 100,
       name: "betterme",
       level:100,
@@ -23,7 +24,11 @@ const store = createStore({
         {id:111, name: "betterme", age: 18},
         {id:112, name: "why", age: 28},
         {id:113, name: "james", age: 25},
-      ]
+      ],
+
+      // 2.服务器数据
+      banner:[],
+      recommend:[]
     }
   },
   // 某些属性我们可能需要变化后来使用，这个时候可以使用getters，
@@ -76,6 +81,13 @@ const store = createStore({
     [CHANGE_INFO](state, newInfo) {
       state.level = newInfo.level
       state.name = newInfo.name
+    },
+    // 保存服务器数据
+    changeBanners(state, banner) {
+      state.banner = banner
+    },
+    changeRecommends(state, recommend) {
+      state.recommend = recommend
     }
   },
   actions: {
@@ -88,6 +100,9 @@ const store = createStore({
     .context是一个和store实例均有相同方法和属性的context对象；
     .所以我们可以从中获取到commit方法来提交一个mutation，或者通过context.state和 context.getters来获取state和getters
   .但是为什么它不是store对象呢？这个等到讲Modules时具体说
+  actions的异步操作
+  .Action通常是异步的，那么如何知道action什么时候结束
+    .我们通过active返回Promise，在Promise的then中来处理完成后的操作
     */ 
   //  actions定义的函数接收context 类似于 state
    incrementAction(context) {
@@ -97,9 +112,42 @@ const store = createStore({
     context.commit("increment")
    },
   //  可传入参数
-  changeNameAction(context, payload) {
-    context.commit("changeName", payload.name)
-  }
+    changeNameAction(context, payload) {
+      // 如果想知道什么时候结束了网络请求，那就要返回一个promise，异步函数一定返回promise。否则需要手动返回，如下
+      return new Promise((resolve, reject) => {
+        context.commit("changeName", payload)
+        resolve()
+      })
+      
+    },
+
+    // 请求首页的数据
+    fetchHomeMultidataAction(context) {
+      // 1.返回Promise，给Promise设置then
+      // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
+      //   res.json().then(data => {
+      //     console.log(data);
+      //   })
+      // })
+      // 2.Promise链式调用
+      // fetch("http://123.207.32.32:8000/home/multidata").then(res => {
+      //   return res.json()
+      // }).then(data => {
+      //   console.log(data);
+      // })
+
+      // 手动返回一个promise，为了让使用的地方知道请求结束。
+      return new Promise( async (resolve, reject) => {
+        // 3.await/async   要在函数前面加上异步 async 异步函数一定返回promise
+      const res = await fetch("http://123.207.32.32:8000/home/multidata")
+      const data = await res.json()
+      
+      // 修改state数据
+      context.commit("changeBanners", data.data.banner.list)
+      context.commit("changeRecommends",data.data.recommend.list)
+      resolve(data.data)
+      })
+    }
   }
 })
 
