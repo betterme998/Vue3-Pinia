@@ -42,3 +42,34 @@
   module的基本使用
   随着项目越来越大，store体积也会非常庞大
   我们需要拆解state，吧store进行分模块
+
+  八.Pinia状态管理
+    1.Pinia和Vuex的对比
+      1.1.什么是Pinia呢？
+        .Pinia（发音/pi:nj/.如英语中的peenya）
+        .Pinia开始于大概2019年，最初是作为一个实验为Vue重新设计状态管理，让它用起来像组合式API（Composition API）。
+        .从那时到现在，最初的设计原则依然相同的，并且目前同时兼容vue2，vue3，也并不要求你使用CompositionAPI；
+        .Pinia本质上依然是一个状态管理库，用于跨组件，页面进行状态共享（这点和vuex，Redux一样）
+
+      1.2.Pinia和Vuex的区别
+      .那么我们不是已经有Vuex了吗？为什么还要用Pinia呢？
+      .Pinia最初是为了探索Vuex的下一次迭代会是什么样子，结合了Vuex5核心团队讨论中的许多想法
+      .最终，团队意识到Pinia已经实现了Vuex5中大部分内容，所以最终决定用Pinia来替代Vuex
+      .于Vuex相比，Pinia提供了一个更简单的API，具有更少的仪式，提供了CompositionAPI风格的API
+      .最重要的是，在与TypeScript一起使用时具有可靠的类型推断支持
+
+      .和Vuex相比，Pinia有很多的优势
+    .比如mutations不再存在
+      *他们经常被认为是非常冗长；
+      *他们最初带来了devtools集成。但这不再是问题
+    .更友好的TypeScript支持，Vuex之前对TS的支持很不友好；
+    。不再有modules的嵌套解构
+      。你可以灵活使用每一个store，他们是通过扁平化的方式来相互使用的
+    .也不再有命名空间的概念，不需要记住它们的复杂关系
+    2.创建Pinia的Store
+
+    3.Pinia核心概念State
+
+    4.Pinia核心概念Getters
+
+    5.Pinia核心概念Actions

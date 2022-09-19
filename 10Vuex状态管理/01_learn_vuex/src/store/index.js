@@ -153,6 +153,16 @@ const store = createStore({
     /*
       module的局部状态
       .对于模块内部mutation和getter，接收的第一个参数是模块的局部状态对象
+
+      module的命名空间
+      .默认情况下，模块内部的action和mutation是注册在全局的命名空间中的
+        .这样使得多个模块能够同时对一个action或mutation作出响应
+        .Getter同样也默认注册在全局命名空间
+        不设置命名空给函数取名字不方便，在counter模块中有使用
+      告诉每个模块有自己的命名空间：namespced:true
+
+      module修改或派发根组件
+      .如果我们希望在action中修改root中的state，那么有如下的方式
     */ 
     home: homeModule,
     counter: counterModule

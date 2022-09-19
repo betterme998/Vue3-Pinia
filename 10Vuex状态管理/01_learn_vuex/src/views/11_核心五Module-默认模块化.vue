@@ -1,11 +1,10 @@
 <template>
   <div class="home">
     <h2>Home Page</h2>
+    <!-- 1.拿到module模块下的state时，是需要state.moduleName.xxx -->
     <h2>Counter模块的counter： {{ $store.state.counter.count }}</h2>
-    <!-- 在counter模块中加上 namespaced:true, 命名空间 -->
-    <!-- 当counter module中使用namespced:true, 命名空间时，可以避免和其他module中action，getter，mutation函数同名问题 -->
-    <!-- 但取值发生了变化 -->
-    <h2>Counter模块的doubleCounter： {{ $store.getters["counter/doubleCount"] }}</h2>
+    <!-- 模块中getters,actions,mutation 默认情况下会合并到store根当中。即使定义在模块中，在拿的时候依然通过 $store.getters.doubleCounter -->
+    <h2>Counter模块的doubleCounter： {{ $store.getters.doubleCount }}</h2>
     <hr>
     <button @click="incrementCount">count模块+1</button>
   </div>
@@ -40,7 +39,7 @@
 
   function incrementCount() {
     // 分发不用跟模块名称，即便抽取在模块中，因为会合并到store
-    store.dispatch("counter/incrementCountAction")
+    store.dispatch("incrementCount")
   }
 </script>
 
