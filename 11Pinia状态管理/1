@@ -22,9 +22,13 @@
       。你可以灵活使用每一个store，他们是通过扁平化的方式来相互使用的
     .也不再有命名空间的概念，不需要记住它们的复杂关系
     2.创建Pinia的Store
+      2.1.安装pinia 
+        npm install pinia
 
     3.Pinia核心概念State
-
+    3.1.认识和定义State
+      .state是store的核心部分，因为store是用来帮助我们管理状态的
+        .在Pinia中，状态被定义为返回初始状态的函数；
     4.Pinia核心概念Getters
 
     5.Pinia核心概念Actions
