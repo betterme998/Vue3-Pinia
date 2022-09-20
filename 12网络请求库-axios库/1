@@ -1,0 +1,14 @@
+原生网络请求
+1.XMLHttpRequest
+2.fetch
+
+axios库
+1.认识Axios
+
+2.axios发送请求
+
+3.axios创建实例
+
+4.axios的拦截器
+
+5.axios请求封装
