@@ -1,50 +1,35 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+
 // 下载完后导入axios
 import axios from 'axios'
+
+// 导入封装好的axios的类实例
+import hyRequest from "./service/index"
+
 createApp(App).mount('#app')
 
-// 使用axios发送网络请求,request函数传入一个配置
-// 1.发送request请求
-axios.request({
-  // 请求地址
-  url: "http://123.207.32.32:8000/home/multidata",
-  // 默认发送get请求
-  method:"get"
-  // 在外部调用zhen方法
+
+// 当再很多页面使用axios时，不会直接导入再使用。因为axios是第三方库，如果有一天不再维护，代码修改起来麻烦，耦合度太高
+// 我们可以对axios多封装一层，封装一个HYRequest类 class HYRequest{},其他页面都用HYRequest，
+// 如果有一个axios不再维护。那么直接修改HYRequest类就行啦，
+// 在实际开发中都会进行封装
+
+// 创建一个文件夹 service 只要和服务器相关的都放这里
+
+// 使用封装好的axios类,使用request请求
+hyRequest.request({
+  url: "/lyric?id=500665346"
 }).then(res => {
-  console.log(res.data);
+  console.log("res:", res);
 })
 
-// 2.发送get请求(写法一),先传入url，在传入配置
-// axios.get("http://123.207.32.32:9001/lyric?id=500665346").then(res => {
-//   console.log("res:",res.data);
-// })
-// 发送get请求(写法二)
-axios.get("http://123.207.32.32:9001/lyric",{
-  // 配置传入参数,这会拼接到url后面
-  params:{
-    id:500665346
+// 使用封装好的axios类,使用get请求
+hyRequest.get({
+  url: "/lyric",
+  params: {
+    id: 500665346
   }
 }).then(res => {
-  console.log("res:",res.data);
+  console.log("res:", res);
 })
-
-// 3.发送post请求（第一种写法）,接收三个参数,先传入url，在传入data，在传入配置
-// axios.post("http://123.207.32.32:1888/02_param/postjson",{
-//   name: "coderwhy",
-//   password: 123456
-// }).then(res => {
-//   console.log("post请求登入res：",res.data);
-// })
-// 3.发送post请求（第二种写法）
-    axios.post("http://123.207.32.32:1888/02_param/postjson",{
-      // 第二个data参数直接写在配置里面，内部会判断
-      data: {
-        name: "coderwhy",
-        password: 123456
-      }
-    }).then(res => {
-      console.log("post请求登入res：",res.data);
-    })
-
