@@ -30,5 +30,10 @@
       .state是store的核心部分，因为store是用来帮助我们管理状态的
         .在Pinia中，状态被定义为返回初始状态的函数；
     4.Pinia核心概念Getters
-
+    4.1认识和定义Detters
+      .他们可以用defineStore中的getters属性定义
+      getters中可以定义接受一个state作为参数的函数
     5.Pinia核心概念Actions
+    5.1认识和定义Actions
+      .Actions相当于组件中的methods
+        .可以使用defineStore()中的actions属性定义，并且他们非常适合定义业务逻辑
