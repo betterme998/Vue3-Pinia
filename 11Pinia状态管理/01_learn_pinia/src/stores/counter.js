@@ -63,9 +63,14 @@ const useCounter = defineStore("counter", {
     }
   },
   actions: {
+    // 相当于组件中的methods
     increment() {
-      // 和getters一样可以使用this，（this指向store）
+      // 和getters一样可以使用this，（this指向store），store必须使用this，不同于getters中store可传入
       this.count++
+    },
+    // 可接收参数
+    incrementNum(num) {
+      this.count += num
     }
   }
 })
