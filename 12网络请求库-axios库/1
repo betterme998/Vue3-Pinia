@@ -12,3 +12,84 @@ axios库
 4.axios的拦截器
 
 5.axios请求封装
+
+回顾
+一。Vuex核心知识
+1.1.Actions的使用
+  1.1.1.actions的基本使用
+    .定义action
+    .dispatch派发action
+  1.1.2.actions的辅助函数
+
+  1.1.3.actions的异步操作
+    .home.vue -> home.js -> actions发送请求
+  1.1.4.action结果返回Promise
+
+1.2.Module的使用
+  1.2.1.module的基本使用
+    .抽取到对象：
+      .state
+      .mutations
+      .getters
+      .actions
+    .modules:{home:对象}
+    .state.home.xxx
+    ; 在module下，下面三个还是在全局中，命名要注意
+    .getters.xxx
+    .commit
+    .diapatch
+
+  ; 要让上面三个他们有独立的空间（就是通过.getters["home/xxx"]拿数据）用命名空间
+  1.2.2.module的命名空间
+    .namespaced:true
+    .getters["home/xxx"]
+    .commit["home/xxx"]
+  
+二。Pinia的使用
+2.1.Pinia介绍和Vuex的区别
+
+2.2.Pinia的安装和基本使用
+  .createPinia
+  .app.use
+  .定义store
+2.3.pinia核心state
+  .使用和修改store.xxx
+  .store.$reset
+  .store.$patch
+  .store.state = {}
+
+2.4.Pina核心getters
+  .基本使用
+  .引入其他的getters
+  .getter返回函数
+  .getters引入其他store数据
+
+2.5.Pinia核心Actions
+  .基本使用
+  .传入参数
+  .发送异步
+  .返回Promise回调
+
+三.axios库
+3.1.为什么选中axios
+3.2.axios发送请求
+  .get/post/request 
+  .config传入
+3.3.axios额外补充
+  .axios.default.baseURL
+  .axios.default.timeout/headers
+3.4.axios创建实例
+  .为什么需要创建实例
+  .axios.create()
+3.5.axios的拦截器 
+  .axios.interceptors.request/response.use
+3.6.axios的简洁封装
+
+作业
+一.Vuex中如何发送异步请求，以及组件如何知道异步请求的结果
+
+二。Vuex如何划分模块，什么是命名空间
+
+三.什么是pinia，和vuex有什么区别？
+
+四。Pinia中有那些核心概念，如何使用这些核心概念？
