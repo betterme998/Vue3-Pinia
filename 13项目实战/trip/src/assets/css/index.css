@@ -1,0 +1,3 @@
+/* 引入其他css，这样在main.js中只要引入这一个css文件即可 */
+@import "./reset.css";
+@import "./common.css";

@@ -28,4 +28,14 @@
   utils          抽取工具函数
   views          大的视图（路由切换的视图放这里）
 
+四.CSS样式的重置
+  .对默认CSS样式进行重置
+  ; 一般先引入别人重置好的css文件，在github上搜的到，
+  ; 我们通过npm install normalize.css 安装
+  ; 安装好后，在main.js文件引入
+    .normalize.css
+
+    ; 然后自己在设置一个重置css文件如下，在assets文件夹下创建reset.css
+    .reset.css
+
     
