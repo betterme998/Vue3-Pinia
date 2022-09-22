@@ -1,0 +1,8 @@
+1.在components文件夹中创建tab-bar文件夹来封装一个tab-ber
+2.在app.vue中导入组件并使用
+3.安装less 在生产环境
+  .npm install less -D
+4.tab-ber有图片，有两种情况
+  1.拿到的是本地图片
+  2.拿到的是服务器返回的图片
+5.jsconfig.json文件夹中的"target": "es5",可能会和vite3产生冲突，注释掉就好
