@@ -20,7 +20,31 @@
 </template>
 
 <script setup>
-
+  // 把tab-bar数据抽取出来
+  const tabbarData = [
+    {
+      text: "首页",
+      image: "@/assets/img/tabbar/tab_home.png",
+      imageActive: "@/assets/img/tabbar/tab_home_active.png",
+      path: "/home"
+    },
+    {
+      text: "收藏",
+      image: "@/assets/img/tabbar/tab_favor.png",
+      imageActive: "@/assets/img/tabbar/tab_favor_active.png",
+      path: "/favor"
+    },{
+      text: "订单",
+      image: "@/assets/img/tabbar/tab_order.png",
+      imageActive: "@/assets/img/tabbar/tab_order_active.png",
+      path: "/order"
+    },{
+      text: "信息",
+      image: "@/assets/img/tabbar/tab_message.png",
+      imageActive: "@/assets/img/tabbar/tab_message_active.png",
+      path: "/message"
+    },
+  ]
 </script>
 
 <style lang="less" scoped>
