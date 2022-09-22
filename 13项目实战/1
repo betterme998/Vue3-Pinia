@@ -6,4 +6,26 @@
   方式二：create-vue 
     基于vite工具
     命令：npm init vue@latest
+
+二.项目配置
+  .配置项目的icon
+    .在public文件夹下，替换favicon.ico
+  .配置项目的标题
+    .在index.html中直接修改
+  .配置jsconfig.json
+    .通过vite创建的vue项目没有jsconfig.json(对vscode代码提示友好)，在其他通过vue create创建的文件夹复制过来
+
+三.项目目录结构划分
+  assets         存放资源 img/css/font/audio/video
+  components     抽取组件
+    common       多个项目都会公用的组件
+    content      当前项目多个页面公用的组件
+  hooks          多个组件用到的公共逻辑抽取到这个组件
+  mock           模拟数据放到这里
+  router         路由
+  service        放网络请求
+  store          状态管理
+  utils          抽取工具函数
+  views          大的视图（路由切换的视图放这里）
+
     
