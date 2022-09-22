@@ -38,4 +38,32 @@
     ; 然后自己在设置一个重置css文件如下，在assets文件夹下创建reset.css
     .reset.css
 
-    
+  .配置一个index.css文件夹导入配置好的其他文件，并在main.js导入index.css 
+
+五.全家桶-路由配置
+  5.1.安装路由
+    .npm install vue-router
+    具体步骤跳转到router/index.js 
+  5.2创建页面
+    5.2.1.首先创建4个页面 首页-收藏-订单-信息
+      .他们是大页面，所以创建文件夹，方便后续相关方面的小组件的存放
+      分别创建一下四大视图文件
+      favor
+      home
+      order
+      message
+      .并创建如home.vue四个文件
+  5.3.配置映射
+  页面创建好后配置映射,记得使用懒加载
+  5.4.在app.vue使用占位符 <router-view>后，可修改搜索框地址查看路由映射是否正常,
+    .配合<router-llink>测试代码
+
+六.全家桶-状态管理
+  .状态管理的选择
+    .vuex：目前依然使用较多的状态管理库
+    .pinia：强烈推荐，未来趋势的状态管理库
+  6.1.安装pinia
+    .npm install pinia 
+    .在stores创建index.js文件,创建并导出pinia，在main.js中使用
+  6.2.安装模块划分store
+    .在stores文件夹下创建modules文件存放不同模块的store
