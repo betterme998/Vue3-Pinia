@@ -1,50 +1,41 @@
 <template>
   <div class="tab-bar">
-    <div class="tab-bar-item">
-      <img src="@/assets/img/tabbar/tab_home.png">
-      <span class="text">首页</span>
-    </div>
-    <div class="tab-bar-item">
-      <img src="@/assets/img/tabbar/tab_favor.png">
-      <span class="text">收藏</span>
-    </div>
-    <div class="tab-bar-item">
-      <img src="@/assets/img/tabbar/tab_order.png">
-      <span class="text">订单</span>
-    </div>
-    <div class="tab-bar-item">
-      <img src="@/assets/img/tabbar/tab_message.png">
-      <span class="text">消息</span>
-    </div>
+    <template v-for="(item, index) in tabbarData" :key="index">
+      <div 
+        class="tab-bar-item" 
+        :class="{ active: currentIndex === index }"
+        @click="itemClick(index, item)"
+      >
+        <!-- img的src是动态的，要经过处理，不然拿不到数据，在vite下的处理 -->
+        <img v-if="currentIndex !== index" :src = "getAssetURL(item.image)">
+        <img v-else :src = "getAssetURL(item.imageActive)">
+        <span class="text">{{ item.text }}</span>
+      </div>
+    </template>
   </div>
 </template>
-
+ 
 <script setup>
-  // 把tab-bar数据抽取出来
-  const tabbarData = [
-    {
-      text: "首页",
-      image: "@/assets/img/tabbar/tab_home.png",
-      imageActive: "@/assets/img/tabbar/tab_home_active.png",
-      path: "/home"
-    },
-    {
-      text: "收藏",
-      image: "@/assets/img/tabbar/tab_favor.png",
-      imageActive: "@/assets/img/tabbar/tab_favor_active.png",
-      path: "/favor"
-    },{
-      text: "订单",
-      image: "@/assets/img/tabbar/tab_order.png",
-      imageActive: "@/assets/img/tabbar/tab_order_active.png",
-      path: "/order"
-    },{
-      text: "信息",
-      image: "@/assets/img/tabbar/tab_message.png",
-      imageActive: "@/assets/img/tabbar/tab_message_active.png",
-      path: "/message"
-    },
-  ]
+  // 把tab-bar数据抽取到assets文件夹，并导入
+  import tabbarData from "@/assets/data/tabbar.js"
+
+  // 导入在vite项目中处理本地图片动态绑定src函数
+  import { getAssetURL } from "@/utils/load_assets.js"
+
+  // 导入路由
+  import { useRouter } from "vue-router"
+
+  import { ref } from "vue";
+
+  // 选择状态
+  const currentIndex = ref(0)
+  // 拿到路由
+  const router = useRouter()
+  // 点击跳转路由改变选择状态
+  const itemClick = (index, item) => {
+    currentIndex.value = index
+    router.push(item.path)
+  }
 </script>
 
 <style lang="less" scoped>
@@ -62,6 +53,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      &.active {
+        color: var(--primary-color);
+      }
 
       .text{
         font-size: 12px;

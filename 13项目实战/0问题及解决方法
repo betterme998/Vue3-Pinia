@@ -1,0 +1,15 @@
+1.本地img的src数据动态显示后，找不到图片报错。
+  情况一：1.webpack创建的项目
+    在动态绑定img的src时，使用require变量来进行包裹(item.url 是 图片路径)
+    <img :src= "require(item.url)">
+  
+  情况二：2.vite创建的项目
+  vite使用 es module 使用必须使用url查找图片，所有返回url 
+  使用函数返回
+    const getAssetURL = (image) => {
+      ; 第一个参数是相对路径
+      ; 第二个参数是，当前文件夹的url
+      根据当前文件夹路径查找相对路径图片，并返回超链接href
+      return new URL(`../../assets/img/tabbar/${image}`, import.meta.url).href
+    }
+    <img :src= "require(item.url)">

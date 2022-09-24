@@ -1,3 +1,20 @@
+在真实开发当中。tab-bar基本使用的是UI库
+UI库：
+类型一《后台管理系统
+.Element-ui（针对vue2）/Element-Plus(针对vue3)
+
+类型二：小程序
+.小程序原生UI库/Vant UI
+
+类型三：移动Web页面
+.Vant UI
+
+类型四：网易云/知乎/Bilibili 官网
+.Element-Plus(针对vue3)
+
+原生封装也可以。没必要
+
+
 1.在components文件夹中创建tab-bar文件夹来封装一个tab-ber
 2.在app.vue中导入组件并使用
 3.安装less 在生产环境
@@ -6,3 +23,11 @@
   1.拿到的是本地图片
   2.拿到的是服务器返回的图片
 5.jsconfig.json文件夹中的"target": "es5",可能会和vite3产生冲突，注释掉就好
+6.抽取出数据tabbar模拟数据，放到assets文件中
+
+7.在utils中封装处理本地img动态绑定src函数。
+
+8.定义css变量。在assets/css/common.css中定义变量
+9.动态绑定active选择的class
+10.动态显示选择图片
+11.监听点击，跳转路由
