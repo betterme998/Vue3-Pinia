@@ -1,6 +1,10 @@
 /* 定义变量 */
 :root {
   --primary-color: #ff9854;
+
+  /* 方法一：全局修改： 组件内的变量 */
+  /* 如果不行，就在后面加上 !important 强制修改 */
+  /* --van-tabbar-item-icon-size:30px !important */
 }
 
 /* 公共的css */

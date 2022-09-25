@@ -1,4 +1,5 @@
 1.本地img的src数据动态显示后，找不到图片报错。
+
   情况一：1.webpack创建的项目
     在动态绑定img的src时，使用require变量来进行包裹(item.url 是 图片路径)
     <img :src= "require(item.url)">
@@ -13,3 +14,16 @@
       return new URL(`../../assets/img/tabbar/${image}`, import.meta.url).href
     }
     <img :src= "require(item.url)">
+
+2.修改第三方UI组件库的样式
+
+  1.如果使用插槽，插入自己的元素
+    .那么在自己的作用域中直接修改这个元素
+  2.没有使用插槽，要修改组件默认样式
+    .全局定义一个变量，覆盖默认变量值
+      .缺点：全局修改，可能影响其他值
+    .局部定义一个变量，覆盖默认变量的值
+      .优点只修改局部变量的值
+    .直接找到对应的子组件选择器，进行修改
+      . :deep(子组件中源选择器)
+        .直接修改css样式

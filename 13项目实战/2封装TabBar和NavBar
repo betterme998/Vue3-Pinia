@@ -31,3 +31,10 @@ UI库：
 9.动态绑定active选择的class
 10.动态显示选择图片
 11.监听点击，跳转路由
+
+二，Vant-封装TabBar和NavBar
+  2.1.安装Vant UI
+    .npm install Vant
+  2.2.按需引入，在Vant官网可以看到
+    配置完成后直接使用。例子：
+    home.vue页面中使用button组件
