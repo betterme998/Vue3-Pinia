@@ -7,16 +7,19 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    01tabBar: typeof import('./src/components/tab-bar/01tab-bar.vue')['default']
+    '02tabBar 手动封装，并抽离数据': typeof import('./src/components/tab-bar/02tab-bar 手动封装，并抽离数据.vue')['default']
+    '03tabBar Vant封装，并修改子组件样式': typeof import('./src/components/tab-bar/03tab-bar Vant封装，并修改子组件样式.vue')['default']
     '手动封装，并抽离数据': typeof import('./src/components/tab-bar/tab-bar 手动封装，并抽离数据.vue')['default']
     '手动封装，并抽离数据02': typeof import('./src/components/tab-bar/tab-bar 手动封装，并抽离数据02.vue')['default']
     copy: typeof import('./src/components/tab-bar/tab-bar copy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TabBar: typeof import('./src/components/tab-bar/tab-bar.vue')['default']
-    'TabBar 手动封装，并抽离数据02': typeof import('./src/components/tab-bar/tab-bar 手动封装，并抽离数据02.vue')['default']
     TabBar_01: typeof import('./src/components/tab-bar/tab-bar_01.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanRate: typeof import('vant/es')['Rate']
+    'Vant封装，并修改子组件样式': typeof import('./src/components/tab-bar/03tab-bar Vant封装，并修改子组件样式.vue')['default']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
   }

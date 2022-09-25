@@ -2,14 +2,10 @@
   <div class="tab-bar">
     <van-tabbar v-model="currentIndex" active-color="#ff9854">
       <template v-for="(item, index) in tabbarData" :key="index">
-        <van-tabbar-item :to="item.path">
-          <!-- 默认插槽 -->
+        <van-tabbar-item :to="item.path" icon="home-o">
+        <!-- 提供了插槽 -->
         <span>{{ item.text }}</span>
-        <!-- 具名插槽 -->
-        <template #icon>
-          <img v-if="currentIndex !== index" :src = "getAssetURL(item.image)">
-          <img v-else :src = "getAssetURL(item.imageActive)">
-        </template>
+        <!-- 图片使用组件默认的，不使用插槽-来演示修改子组件样式 -->
       </van-tabbar-item>
       </template>
     </van-tabbar>
@@ -41,8 +37,17 @@
 
 <style lang="less" scoped>
   .tab-bar {
+    //方法二：局部修改变量
+    //--van-tabbar-item-icon-size:30px !important;
+
+    //方法三：找到组件对应元素的类，对类中css属性重写，因为组件就是其他vue页面的引入，然而style标签设置了scoped。所有我们如果直接修改组件的类，不会对组件产生映射
+    //解决办法：穿透到子组件，修改他们的类，  :deep(类名)
+    //找到子组件的类，让子组件的类也可以生效
+    :deep(.van-tabbar-item__icon) {
+      font-size: 50px;
+    }
     img {
-      height: 26px;
+      height: 28px;
     }
   }
   
