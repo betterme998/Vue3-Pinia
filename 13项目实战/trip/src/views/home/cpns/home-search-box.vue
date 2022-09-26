@@ -1,6 +1,6 @@
 <template>
   <div class="search-box">
-    <!-- 定位 -->
+    <!-- 1.定位 -->
     <div class="location">
       <div class="city" @click="cityClick">广州</div>
       <div class="position" @click="positionClick">

@@ -4,3 +4,16 @@
   .点击城市跳转到选择城市页面
   .点击定位获取当前位置经纬度
   .创建点击后跳转的页面，并配置路由
+4.封装axios，请求选择城市数据
+  4.1.安装axios
+    .npm install axios
+  4.2.在service文件夹中创建requset，modules文件夹,index.js
+    .requset文件夹封装了axios，和配置config
+    .modules文件存放各个模块的请求，如城市所有的请求都放在city.vue里面
+    .index.js用来导入模块中请求方法，在使用时就不要一直往下找，直接导入service的index.js
+
+    当我们需要发送网络请求时，直接去找对应的模块 service->module->xxx 如请求城市，service->module->city,js
+    当我们调用city.js里的方法时需要什么参数其实都在module->city,js里面拼接了
+    调用成功返回一个promise，在进行操作
+
+    如果有一天服务器地址发送修改，我们只要找知道的模块就行

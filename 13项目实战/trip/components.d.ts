@@ -21,7 +21,9 @@ declare module '@vue/runtime-core' {
     VanRate: typeof import('vant/es')['Rate']
     VanSearch: typeof import('vant/es')['Search']
     'Vant封装，并修改子组件样式': typeof import('./src/components/tab-bar/03tab-bar Vant封装，并修改子组件样式.vue')['default']
+    VanTab: typeof import('vant/es')['Tab']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
+    VanTabs: typeof import('vant/es')['Tabs']
   }
 }
