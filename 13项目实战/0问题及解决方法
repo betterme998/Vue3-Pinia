@@ -44,3 +44,10 @@
       overflow-y: auto;//超出部分出现滚动条
 
       可将样式抽取到公共的css中,想隐藏tabbar的页面就使用对应的class
+
+4.当定义一个常量来保存请求的数据，并直接在template中使用数据时，一开始数据值为undefined，拿不到数据会报错。
+  解决方法：通过if判断太麻烦
+  简洁办法：?.
+    在取值时，通过?.的方式
+      例子：const allCity = ref() //保存网络请求数据后--> 在template中使用<h2>allCity?.data?.list</h2>
+      .? 表示不为空就往下取值
