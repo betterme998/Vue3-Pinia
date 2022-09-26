@@ -27,3 +27,20 @@
     .直接找到对应的子组件选择器，进行修改
       . :deep(子组件中源选择器)
         .直接修改css样式
+
+3.首页中跳转到其他页面，该页面占据整个屏幕不需要tabbar。但是点进去会看到tabbar.需要隐藏tabbar
+  两种解决方案
+  方案一：使用route
+    1.在需要要显示tabbar页面的路由映射中配置meta:{hiderTabBar:true}// 判断是否隐藏tabbar
+      .通过useRoute()拿到当前活跃的route
+      .在通过v-if="!route.meta.hiderTabBar"来判断是否显示tabbar.
+
+  方案二：通过css
+    2.给要占据整个屏幕的页面设置css属性
+      position: relative;
+      z-index: 9;//在tabbar上面
+      height: 100vh;//最外层高度
+      background-color: #fff; //设置背景遮盖tabbar
+      overflow-y: auto;//超出部分出现滚动条
+
+      可将样式抽取到公共的css中,想隐藏tabbar的页面就使用对应的class

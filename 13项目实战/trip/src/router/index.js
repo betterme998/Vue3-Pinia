@@ -30,6 +30,16 @@ const router = createRouter({
       // 使用懒加载
       path:"/message",
       component: () => import("@/views/message/message.vue")
+    },
+    {
+      // 使用懒加载
+      path:"/city",
+      component: () => import("@/views/city/city.vue"),
+      // useRoute() -- 拿到当前活跃的路由对象
+      // meta: {
+      //   // 判断是否隐藏tabbar
+      //   hiderTabBar:true
+      // }
     }
   ]
 })
