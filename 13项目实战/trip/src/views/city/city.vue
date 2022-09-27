@@ -1,29 +1,38 @@
 <template>
   <div class="city top-page">
-    <!-- 1.搜索框 -->
-    <van-search 
-      v-model="searchValue" 
-      placeholder="城市/区域/位置" 
-      shape="round"
-      show-action
-      @cancel="cancelClick"
-    />
+    <div class="top">
+      <!-- 1.搜索框 -->
+      <van-search 
+        v-model="searchValue" 
+        placeholder="城市/区域/位置" 
+        shape="round"
+        show-action
+        @cancel="cancelClick"
+      />
 
-    <!-- 2.tab的切换 -->
-    <van-tabs v-model:active="tabActive" color="#ff9854" line-height="2">
-      <!-- 定义的常量allCity，一开始为undefined，如往下取值会报错，解决办法使用?. 表示不为空再往下取值 -->
-      <!-- <van-tab :title="allCity?.cityGroup?.title"></van-tab> -->
-      <!-- 使用请求来的数据尽量使用循环 -->
-      <!-- 当for in 循环遍历的是对象时，(值，键，索引) in object -->
-      <template v-for="(value, key, index) in allCities" :key="key">
-        <van-tab :title="value.title"></van-tab>
+      <!-- 2.tab的切换 -->
+      <van-tabs v-model:active="tabActive" color="#ff9854" line-height="2">
+        <!-- 定义的常量allCity，一开始为undefined，如往下取值会报错，解决办法使用?. 表示不为空再往下取值 -->
+        <!-- <van-tab :title="allCity?.cityGroup?.title"></van-tab> -->
+        <!-- 使用请求来的数据尽量使用循环 -->
+        <!-- 当for in 循环遍历的是对象时，(值，键，索引) in object -->
+        <template v-for="(value, key, index) in allCities" :key="key">
+          <!-- 绑定name，标签名称，作为匹配的标识符，就是tabActive会变成key -->
+          <van-tab :title="value.title" :name="key"></van-tab>
+        </template>
+      </van-tabs>
+    </div>
+    <div class="content">
+      <!-- 第一次没有值，因为currentGroup开始为undefined，取值就是undefined.cities会报错，所以加上？.表示有值再取值 -->
+      <template v-for="item in currentGroup?.cities">
+        <div>列表数据{{ item }}</div>
       </template>
-    </van-tabs>
+    </div>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
   import { getCityAll } from "@/service";
   import useCityStore from "../../stores/modules/city"
@@ -39,7 +48,7 @@
   }
 
   // tab的切换
-  const tabActive = ref(0)
+  const tabActive = ref('')
 
   /*
     这个位置发送网络请求有两个缺点
@@ -69,6 +78,11 @@
   // 拿city的store中的数据
   // storeToRefs 是pinia定义的方法等效于Refs
   const { allCities } = storeToRefs(cityStore)
+
+  // 目的：获取选中标签后的数据
+  // 1.获取正确的key：将tabs中绑定的tabAction正确绑定，要在tab标签中绑定key，这个可以会作为标识，（识别点击了那个，key值作为标识。又因为这个标识被v-model:active=""双向绑定所以就可以拿到可以值）
+  // 2.根据key从allCities （解构store后）获取数据，默认直接获取的数据不是响应式的，所以必须包裹computed
+  const currentGroup = computed(() => allCities.value[tabActive.value])
 </script>
 
 <style lang="less" scoped>
@@ -77,5 +91,22 @@
 
 .city {
   // --van-tabs-line-height: 30px;
+
+  // top固定定位
+  // .top {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  // }
+  // .content{
+  //   margin-top: 98px;
+  // }
+
+  // 局部滚动
+  .content {
+    height: calc(100vh - 98px);
+    overflow-y: auto;
+  }
 }
 </style>
