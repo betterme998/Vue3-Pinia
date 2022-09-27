@@ -23,9 +23,12 @@
       </van-tabs>
     </div>
     <div class="content">
-      <!-- 第一次没有值，因为currentGroup开始为undefined，取值就是undefined.cities会报错，所以加上？.表示有值再取值 -->
-      <template v-for="item in currentGroup?.cities">
-        <div>列表数据{{ item }}</div>
+      <!-- 因为城市数据很大，两个标签切换影响性能,所以使用v-show来操作 -->
+      <!-- <city-group :group-data="currentGroup"/> -->
+      
+      <!-- 相当于再两个组件来回切换 -->
+      <template v-for="(value, key, index) in allCities">
+        <city-group v-show="tabActive===key" :group-data="value"/>
       </template>
     </div>
   </div>
@@ -37,6 +40,8 @@
   import { getCityAll } from "@/service";
   import useCityStore from "../../stores/modules/city"
   import { storeToRefs } from 'pinia';
+
+  import CityGroup from './cpns/city-group.vue'
 
 
   const router = useRouter()
@@ -102,6 +107,11 @@
   // .content{
   //   margin-top: 98px;
   // }
+
+  .top {
+    position: relative;
+    z-index: 9;
+  }
 
   // 局部滚动
   .content {
