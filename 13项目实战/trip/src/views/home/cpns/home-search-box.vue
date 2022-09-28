@@ -11,7 +11,7 @@
     </div>
 
     <!-- 2.日期范围 -->
-    <div class="section date-range">
+    <div class="section date-range" @click="showCalendar = true">
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
@@ -26,6 +26,15 @@
         </div>
       </div>
     </div>
+    <!-- 选择具体时间 Vant 组件库 -->
+    <van-calendar 
+      v-model:show="showCalendar" 
+      @confirm="onConfirm"
+      :show-confirm="false"
+      type="range"
+      :round="false"
+      color="#ff9854"
+    />
   </div>
 </template>
 
@@ -72,9 +81,29 @@
   // 通过dayjs库的方法设置时间：
   const newDate = nowDate.setDate(nowDate.getDate() + 1)
   const endDate = ref(formatMonthDay(newDate)) 
+
+  // 选择日期
+  const showCalendar = ref(false)
+  const onConfirm = (value) => {
+    // 1.设置日期
+    // 点击确定后获得参数，开始时间，结束时间
+    const selectStartDate = value[0]
+    const selectEndDate = value[1]
+    // 拿到最新时间后，调用封装好的处理时间的方法,更新之前获取的时间
+    startDate.value = formatMonthDay(selectStartDate)
+    endDate.value = formatMonthDay(selectEndDate)
+
+    // 2.隐藏日历
+    showCalendar.value = false
+  }
 </script>
 
 <style lang="less" scoped>
+.search-box{
+  --van-calendar-popup-height:100%;
+}
+
+
 .location {
   display: flex;
   align-items: center;
