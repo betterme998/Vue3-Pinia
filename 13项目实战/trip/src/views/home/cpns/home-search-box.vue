@@ -15,14 +15,14 @@
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">9月28</span>
+          <span class="time">{{ startDate }}</span>
         </div>
         <div class="stay">共一晚</div>
       </div>
       <div class="end">
         <div class="date">
           <span class="tip">离店</span>
-          <span class="time">9月29</span>
+          <span class="time">{{ endDate }}</span>
         </div>
       </div>
     </div>
@@ -33,6 +33,8 @@
   import { useRouter } from 'vue-router';
   import useCityStore from '@/stores/modules/city.js';
   import { storeToRefs } from 'pinia';
+  import { ref } from 'vue';
+  import { formatMonthDay } from "@/utils/format_date.js"
   const router = useRouter()
   // 位置/城市
   // 位置
@@ -60,6 +62,16 @@
   // 选之后在store中拿到数据
   const cityStore = useCityStore()
   const { currentCity } = storeToRefs(cityStore)
+
+  // 日期范围的处理
+  // 当前的时间,使用dayjs库，安装 npm install dayjs
+  // 把获取当前时间封装成一个函数，存放到utils中
+  // 调用封装好的获取当前时间并转换好格式的时间
+  const nowDate = new Date()
+  const startDate = ref(formatMonthDay(nowDate))
+  // 通过dayjs库的方法设置时间：
+  const newDate = nowDate.setDate(nowDate.getDate() + 1)
+  const endDate = ref(formatMonthDay(newDate)) 
 </script>
 
 <style lang="less" scoped>
