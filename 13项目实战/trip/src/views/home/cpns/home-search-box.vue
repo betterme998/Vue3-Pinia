@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <!-- 1.位置信息 -->
-    <div class="location">
+    <div class="location bottom-gray-line">
       <!-- 通过store拿到选中后的数据 -->
       <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
       <div class="position" @click="positionClick">
@@ -11,7 +11,7 @@
     </div>
 
     <!-- 2.日期范围 -->
-    <div class="section date-range" @click="showCalendar = true">
+    <div class="section date-range bottom-gray-line" @click="showCalendar = true">
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
@@ -35,6 +35,13 @@
       :round="false"
       color="#ff9854"
     />
+
+    <!-- 3.描述 -->
+    <div class="section price-counter bottom-gray-line">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+    <div class="section keyword bottom-gray-line">关键字/位置/名宿名</div>
   </div>
 </template>
 
@@ -145,6 +152,8 @@
   align-items: center;
   padding: 0 20px;
   color: #999;
+  height: 44px;
+
   .start {
     flex: 1;
     display: flex;
@@ -184,6 +193,14 @@
     color: #666;
   }
 }
+
+.price-counter {
+  .start {
+    border-right: 1px solid var(--line-color);
+  }
+}
+
+
 
 
 </style>
