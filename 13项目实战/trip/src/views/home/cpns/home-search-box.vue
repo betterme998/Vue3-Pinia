@@ -2,7 +2,8 @@
   <div class="search-box">
     <!-- 1.定位 -->
     <div class="location">
-      <div class="city" @click="cityClick">广州</div>
+      <!-- 通过store拿到选中后的数据 -->
+      <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
       <div class="position" @click="positionClick">
         <span class="text">我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="">
@@ -13,6 +14,8 @@
 
 <script setup>
   import { useRouter } from 'vue-router';
+  import useCityStore from '@/stores/modules/city.js';
+  import { storeToRefs } from 'pinia';
   const router = useRouter()
   // 位置/城市
   // 位置
@@ -31,11 +34,15 @@
   )
   }
 
-  // 城市
+  // 当前城市
   const cityClick = () => {
     // 点击跳转到选择位置页面
     router.push("/city")
   }
+
+  // 选之后在store中拿到数据
+  const cityStore = useCityStore()
+  const { currentCity } = storeToRefs(cityStore)
 </script>
 
 <style lang="less" scoped>

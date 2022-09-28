@@ -5,7 +5,9 @@ import { defineStore } from "pinia";
 // 创建store，传入两个参数 id，对象
 const useCityStore = defineStore("city", {
   state: () => ({
-    allCities: {}
+    allCities: {},
+    // currentCity用来存储选中的城市参数
+    currentCity:{ cityName: "广州"}
   }),
   actions: {
     // 发送网络请求，异步返回promise
