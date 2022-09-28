@@ -17,7 +17,7 @@
           <span class="tip">入住</span>
           <span class="time">{{ startDate }}</span>
         </div>
-        <div class="stay">共一晚</div>
+        <div class="stay">共{{stayCount}}晚</div>
       </div>
       <div class="end">
         <div class="date">
@@ -43,7 +43,7 @@
   import useCityStore from '@/stores/modules/city.js';
   import { storeToRefs } from 'pinia';
   import { ref } from 'vue';
-  import { formatMonthDay } from "@/utils/format_date.js"
+  import { formatMonthDay,getDiffDays } from "@/utils/format_date.js"
   const router = useRouter()
   // 位置/城市
   // 位置
@@ -76,11 +76,13 @@
   // 当前的时间,使用dayjs库，安装 npm install dayjs
   // 把获取当前时间封装成一个函数，存放到utils中
   // 调用封装好的获取当前时间并转换好格式的时间
-  const nowDate = new Date()
-  const startDate = ref(formatMonthDay(nowDate))
-  // 通过dayjs库的方法设置时间：
-  const newDate = nowDate.setDate(nowDate.getDate() + 1)
-  const endDate = ref(formatMonthDay(newDate)) 
+  const nowDate = new Date()//开始时间
+  const newDate = new Date()//结束时间
+  const startDate = ref(formatMonthDay(nowDate))//转换开始时间
+  // 通过dayjs库的方法设置时间： 
+  newDate.setDate(nowDate.getDate() + 1)//在开始时间的基础上加一天
+  const endDate = ref(formatMonthDay(newDate)) //转换结束时间
+  const stayCount = ref(getDiffDays(nowDate,newDate)) //计算时间差
 
   // 选择日期
   const showCalendar = ref(false)
@@ -92,6 +94,9 @@
     // 拿到最新时间后，调用封装好的处理时间的方法,更新之前获取的时间
     startDate.value = formatMonthDay(selectStartDate)
     endDate.value = formatMonthDay(selectEndDate)
+    // 获取时间差,使用dayjs计算
+    stayCount.value = getDiffDays(selectStartDate,selectEndDate)
+
 
     // 2.隐藏日历
     showCalendar.value = false
