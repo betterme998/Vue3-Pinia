@@ -1,12 +1,29 @@
 <template>
   <div class="search-box">
-    <!-- 1.定位 -->
+    <!-- 1.位置信息 -->
     <div class="location">
       <!-- 通过store拿到选中后的数据 -->
       <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
       <div class="position" @click="positionClick">
         <span class="text">我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="">
+      </div>
+    </div>
+
+    <!-- 2.日期范围 -->
+    <div class="section date-range">
+      <div class="start">
+        <div class="date">
+          <span class="tip">入住</span>
+          <span class="time">9月28</span>
+        </div>
+        <div class="stay">共一晚</div>
+      </div>
+      <div class="end">
+        <div class="date">
+          <span class="tip">离店</span>
+          <span class="time">9月29</span>
+        </div>
       </div>
     </div>
   </div>
@@ -75,4 +92,52 @@
     }
   }
 }
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
+  color: #999;
+  .start {
+    flex: 1;
+    display: flex;
+    height:44px;
+    align-items: center;
+  }
+
+  .end {
+    min-width: 30%;
+    padding-left: 20px;
+  }
+
+  .date {
+    display: flex;
+    flex-direction: column;
+    .tip {
+      font-size: 12px;
+      color: #999;
+    }
+    .time {
+      margin-top: 3px;
+      color: #333;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
+}
+
+.date-range {
+  height: 44px;
+  
+  .stay {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+
 </style>
