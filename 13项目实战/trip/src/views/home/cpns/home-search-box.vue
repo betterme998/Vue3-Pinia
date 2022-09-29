@@ -55,6 +55,11 @@
         </div>
       </template>
     </div>
+
+    <!-- 5.搜索按钮 -->
+    <div class="section search-btn">
+      <div class="btn">开始搜索</div>
+    </div>
   </div>
 </template>
 
@@ -68,13 +73,6 @@
   const router = useRouter()
   
 
-  // // 定义Props
-  // defineProps({
-  //   hotSuggests: {
-  //     type: Array,
-  //     default: () => []
-  //   }
-  // })
 
   // 位置/城市
   // 位置
@@ -136,6 +134,8 @@
   //热门推荐
   const homeStore = useHomeStore()
   const { hotSuggests } = storeToRefs(homeStore)
+
+  // 
 </script>
 
 <style lang="less" scoped>
@@ -230,12 +230,30 @@
 
 .hot-suggest {
   margin: 10px 0;
+  height: auto;
   .item {
     padding: 4px 8px;
     border-radius: 14px;
     margin: 4px;
     font-size: 12px;
     line-height: 1;
+  }
+}
+
+.search-btn {
+  .btn {
+    width: 342px;
+    height: 38px;
+    max-height: 50px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 20px;
+    color: #fff;
+    background-image: var(
+      --theme-liner-gradient
+    );
   }
 }
 
