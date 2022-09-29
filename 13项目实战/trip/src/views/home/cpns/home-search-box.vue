@@ -36,12 +36,25 @@
       color="#ff9854"
     />
 
-    <!-- 3.描述 -->
+    <!-- 3.价格/人数选择/ -->
     <div class="section price-counter bottom-gray-line">
       <div class="start">价格不限</div>
       <div class="end">人数不限</div>
     </div>
+    <!-- 关键字 -->
     <div class="section keyword bottom-gray-line">关键字/位置/名宿名</div>
+
+    <!-- 4.热门建议 -->
+    <div class="section hot-suggest">
+      <template v-for="(item, index) in hotSuggests" :key="index">
+        <div 
+          class="item"
+          :style="{ color: item.tagText.color, background: item.tagText.background.color }"
+        >
+          {{ item.tagText.text }}
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -51,7 +64,18 @@
   import { storeToRefs } from 'pinia';
   import { ref } from 'vue';
   import { formatMonthDay,getDiffDays } from "@/utils/format_date.js"
+  import useHomeStore from "@/stores/modules/home"
   const router = useRouter()
+  
+
+  // // 定义Props
+  // defineProps({
+  //   hotSuggests: {
+  //     type: Array,
+  //     default: () => []
+  //   }
+  // })
+
   // 位置/城市
   // 位置
   const positionClick = () => {
@@ -108,6 +132,10 @@
     // 2.隐藏日历
     showCalendar.value = false
   }
+
+  //热门推荐
+  const homeStore = useHomeStore()
+  const { hotSuggests } = storeToRefs(homeStore)
 </script>
 
 <style lang="less" scoped>
@@ -197,6 +225,17 @@
 .price-counter {
   .start {
     border-right: 1px solid var(--line-color);
+  }
+}
+
+.hot-suggest {
+  margin: 10px 0;
+  .item {
+    padding: 4px 8px;
+    border-radius: 14px;
+    margin: 4px;
+    font-size: 12px;
+    line-height: 1;
   }
 }
 
