@@ -58,7 +58,7 @@
 
     <!-- 5.搜索按钮 -->
     <div class="section search-btn">
-      <div class="btn">开始搜索</div>
+      <div class="btn" @click="searchBtnClick">开始搜索</div>
     </div>
   </div>
 </template>
@@ -107,9 +107,10 @@
   // 调用封装好的获取当前时间并转换好格式的时间
   const nowDate = new Date()//开始时间
   const newDate = new Date()//结束时间
-  const startDate = ref(formatMonthDay(nowDate))//转换开始时间
   // 通过dayjs库的方法设置时间： 
   newDate.setDate(nowDate.getDate() + 1)//在开始时间的基础上加一天
+
+  const startDate = ref(formatMonthDay(nowDate))//转换开始时间
   const endDate = ref(formatMonthDay(newDate)) //转换结束时间
   const stayCount = ref(getDiffDays(nowDate,newDate)) //计算时间差
 
@@ -135,7 +136,19 @@
   const homeStore = useHomeStore()
   const { hotSuggests } = storeToRefs(homeStore)
 
-  // 
+  // 开始搜索
+  const searchBtnClick = () => {
+    // 点击搜索跳转到搜索页面，并传递参数,开始时间，结束时间，选择城市
+    // 因为这些都是ref对象，所以要传入他们的值
+    router.push({
+      path: "/search",
+      query: {
+        startDate: startDate.value,
+        endDate: endDate.value,
+        currentCity: currentCity.value.cityName
+      }
+    })
+  }
 </script>
 
 <style lang="less" scoped>
