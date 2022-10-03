@@ -111,7 +111,12 @@
       1.通过是否显示，（路由meta属性配置布尔值）
       2.通过css
 
-
+  十.分类
+    1.分类在搜索下面，发送请求分类数据。在home的store中请求。
+    2.在sevice文件的modules的home中写网络请求的代码
+    3.创建分类组件home-categories
+    4.在home页面发送网络请求。
+    5.在home-categories页面处理数据
 
 
 
