@@ -14,3 +14,14 @@ export function getHomeCategories() {
     url:"/home/categories"
   })
 }
+
+// 热门推荐按请求函数
+export function getHomeHouselist(currentPage) {
+  return hyRequest.get({
+    url:"/home/houselist",
+    // 网络请求参数
+    params: {
+      page: currentPage
+    }
+  })
+}

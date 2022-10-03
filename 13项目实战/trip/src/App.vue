@@ -1,6 +1,8 @@
 <template>
   <div class="app">
-    <router-view></router-view>
+    <div class="ItemContent">
+      <router-view></router-view>
+    </div>
     <!-- 隐藏tabbar方案一 -->
     <tab-bar v-if="!route.meta.hiderTabBar"/>
 
@@ -22,5 +24,5 @@
 
 
 <style scoped>
-
+  
 </style>

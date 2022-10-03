@@ -28,3 +28,8 @@ body {
 .bottom-gray-line {
   border-bottom: 1px solid var(--line-color);
 }
+
+.ItemContent {
+  height: calc(100vh - 55px);
+  overflow-y: auto;
+}
