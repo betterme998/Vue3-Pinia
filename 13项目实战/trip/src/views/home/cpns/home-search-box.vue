@@ -15,14 +15,14 @@
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">{{ startDate }}</span>
+          <span class="time">{{ startDater }}</span>
         </div>
         <div class="stay">共{{stayCount}}晚</div>
       </div>
       <div class="end">
         <div class="date">
           <span class="tip">离店</span>
-          <span class="time">{{ endDate }}</span>
+          <span class="time">{{ endDater }}</span>
         </div>
       </div>
     </div>
@@ -67,9 +67,11 @@
   import { useRouter } from 'vue-router';
   import useCityStore from '@/stores/modules/city.js';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { formatMonthDay,getDiffDays } from "@/utils/format_date.js"
   import useHomeStore from "@/stores/modules/home"
+  import useMainStore from "@/stores/modules/main"
+
   const router = useRouter()
   
 
@@ -105,14 +107,14 @@
   // 当前的时间,使用dayjs库，安装 npm install dayjs
   // 把获取当前时间封装成一个函数，存放到utils中
   // 调用封装好的获取当前时间并转换好格式的时间
-  const nowDate = new Date()//开始时间
-  const newDate = new Date()//结束时间
-  // 通过dayjs库的方法设置时间： 
-  newDate.setDate(nowDate.getDate() + 1)//在开始时间的基础上加一天
+  // 时间保存在main->store中,拿出来转换
+  const mainStore = useMainStore()
+  const { startDate, endDate } = storeToRefs(mainStore)
 
-  const startDate = ref(formatMonthDay(nowDate))//转换开始时间
-  const endDate = ref(formatMonthDay(newDate)) //转换结束时间
-  const stayCount = ref(getDiffDays(nowDate,newDate)) //计算时间差
+
+  const startDater = computed(() => formatMonthDay(startDate.value))//转换开始时间
+  const endDater = computed(() => formatMonthDay(endDate.value)) //转换结束时间
+  const stayCount = computed(() => getDiffDays(startDate.value,endDate.value)) //计算时间差
 
   // 选择日期
   const showCalendar = ref(false)
@@ -121,9 +123,10 @@
     // 点击确定后获得参数，开始时间，结束时间
     const selectStartDate = value[0]
     const selectEndDate = value[1]
-    // 拿到最新时间后，调用封装好的处理时间的方法,更新之前获取的时间
-    startDate.value = formatMonthDay(selectStartDate)
-    endDate.value = formatMonthDay(selectEndDate)
+    // 拿到最新时间后，修改main store中的数据
+    mainStore.startDate = selectStartDate
+    mainStore.endDate = selectEndDate
+
     // 获取时间差,使用dayjs计算
     stayCount.value = getDiffDays(selectStartDate,selectEndDate)
 

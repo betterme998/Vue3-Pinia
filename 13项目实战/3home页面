@@ -175,6 +175,86 @@
 
     5.在components中创建搜索框组件
 
+  11.搜索框显示的时间是之前选择的时间，且很多地方会用到。
+    .把很多地方都会用到的数据放到mainStore中，方便其他页面使用
+
+  回顾：
+    一.细节知识点
+    1.1.line-height默认1.1
+
+    1.2.window10中chrome定位
+
+    二.首页的搭建
+    2.1.搜索按钮的点击
+      .搜索搭建
+      .点击跳转到搜索页
+
+    2.2.类别的数据展示
+      .请求类别数据
+        .homeStore
+          .state
+          .actions 
+      .展示数据
+        .水平滚动
+          .overflow-x：auto
+          .::-webkit-sctollbar{display:none}
+      
+    2.3.列表数据展示
+      2.3.1.请求第一页数据 
+        .请求房屋列表的数据
+          .homeStore
+            .houselist[]
+            .actions
+          .this.houselist.push(...resizeBy.data)
+      2.3.2.点击加载更多
+        .保存currenPage
+          .homeStore
+            .currentPage
+            .currentPage++
+      
+      2.3.3.不同类型展示数据
+        .home-item-v9
+        .home-item-v3
+
+    三.首页处理
+    3.1.数据展示的undefined
+      .?. 
+      .v-if
+    3.2.useScroll
+      3.2.1.isReachBottom
+      3.2.2.scrollTop
+        .ref->watch
+        .computed 
+    
+      3.2.3.节流的处理
+        .underscore
+          .throttle
+          .另一个选择，先不处理
+    3.3.Tabbar不选中问题
+
+    3.4.SearchBar封装和展示
+
+    3.5.开始和结束时间共享
+      .mainStore
+        .starDate
+        .endDate
+    
+
+  作业：
+    一.如何监听页面滚动？上拉加载更多，显示搜索框
+      .hooks封装 useScroll
+    
+    二.如何监控整个应用进行网络请求，并且显示动画界面？
+
+    三？隐藏底部tabBar有什么方式
+
+    四.页面跳转如何进行数据的传递
+    .搜索页面跳转：query
+    .跳转想去页：动态路由 /derall/:id
+
+    
+            
+
 
       
 

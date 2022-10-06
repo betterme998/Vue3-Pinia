@@ -1,8 +1,8 @@
 import dayjs from "dayjs"
 
-export function formatMonthDay(date) {
+export function formatMonthDay(date, formatStr = "MM月DD日") {
   // dayjs传入一个日期
-  return dayjs(date).format("MM月DD日")
+  return dayjs(date).format(formatStr)
 }
 
 // 计算时间差
