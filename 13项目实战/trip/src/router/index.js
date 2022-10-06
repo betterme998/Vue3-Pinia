@@ -48,6 +48,11 @@ const router = createRouter({
       meta: {
         hiderTabBar: true
       }
+    },
+    {
+      // 传过来对应的id,使用动态路由
+      path:"/detail/:id",
+      component: () => import("@/views/detail/detail.vue"),
     }
   ]
 })
