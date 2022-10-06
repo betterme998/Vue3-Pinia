@@ -4,6 +4,10 @@ import axios from "axios"
 // 导入配置config
 import { BASE_URL, TOMEOUT } from './config'
 
+// 导入main store
+import useMainStore from '@/stores/modules/main'
+const mainStore = useMainStore()
+
 // 封装一个类
 class HYRequest {
   // 定义一个axios实例，并配置config
@@ -13,6 +17,24 @@ class HYRequest {
     this.instance = axios.create({
       baseURL,
       timeout
+    })
+
+    // 请求拦截
+    this.instance.interceptors.request.use( config => {
+    // 请求成功时开始动画
+      mainStore.isLoading = true
+      return config
+    }, err => {
+      mainStore.isLoading = false
+      return err
+    })
+    this.instance.interceptors.response.use( res => {
+      // 响应成功时结束动画
+      mainStore.isLoading = false
+      return res
+    }, err => {
+      mainStore.isLoading = false
+      return err
     })
   }
 

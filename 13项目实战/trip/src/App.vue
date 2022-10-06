@@ -4,9 +4,12 @@
       <router-view></router-view>
     </div> -->
     <router-view></router-view>
+
+    <!-- 加载动画 -->
+    <Loading/>
+
     <!-- 隐藏tabbar方案一 -->
     <tab-bar v-if="!route.meta.hiderTabBar"/>
-
     <!-- 隐藏tabbar方案二 css方法 -->
     <!-- <tab-bar/> -->
   </div>
@@ -14,6 +17,7 @@
 
 <script setup>
   import TabBar from "@/components/tab-bar/tab-bar.vue"
+  import Loading from "@/components/loading/loading.vue"
 
   import { useRoute } from "vue-router";
   // 判断是否隐藏tabbar
@@ -25,5 +29,5 @@
 
 
 <style scoped>
-  
+
 </style>
