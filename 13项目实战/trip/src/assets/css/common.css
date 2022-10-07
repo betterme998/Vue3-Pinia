@@ -9,6 +9,7 @@
   /* 全局修改：修改search样式 (修改Vant搜索框左侧图标变量)*/
   --van-search-left-icon-color:var(--primary-color) !important;
   --theme-liner-gradient:linear-gradient(90deg, #fa8c1d, #fcaf3f);
+  --van-primary-color:var(--primary-color)
 }
 
 /* 公共的css */
