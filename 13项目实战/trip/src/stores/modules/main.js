@@ -13,7 +13,8 @@ const useMainStore = defineStore("main", {
     endDate: endDate,
 
     isLoading:false
-  })
+  }),
+  persist: true
 })
 
 export default useMainStore

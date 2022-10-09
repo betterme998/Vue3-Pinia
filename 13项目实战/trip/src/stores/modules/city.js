@@ -15,7 +15,8 @@ const useCityStore = defineStore("city", {
       const res = await getCityAll()
       this.allCities = res.data
     }
-  }
+  },
+  persist: true
 })
 
 // 导出store的创建函数

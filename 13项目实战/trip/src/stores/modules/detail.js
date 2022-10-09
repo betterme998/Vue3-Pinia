@@ -16,7 +16,8 @@ const useDetailStore = defineStore("detail", {
       this.swipeData = res?.data?.mainPart?.topModule?.housePicture?.housePics
       console.log(res)
     }
-  }
+  },
+  persist: true
 })
 
 export default useDetailStore

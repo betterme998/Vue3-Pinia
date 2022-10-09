@@ -32,7 +32,8 @@ const useHomeStore = defineStore("home", {
       this.houselist.push(...res.data)
       this.currentPage++
     }
-  }
+  },
+  persist: true
 })
 
 export default useHomeStore
