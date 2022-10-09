@@ -7,13 +7,15 @@ import { getDatailInfos } from "@/service/modules/detail"
 // 创建详情页的store
 const useDetailStore = defineStore("detail", {
   state: () => ({
-    swipeData:[]//轮播图数据
+    swipeData:[],//轮播图数据
+    topInfos:{} //房屋详情信息数据
   }),
   actions: {
     // 发送异步网络请求返回promise
     async fetchDetailData(houseId) {
       const res = await getDatailInfos(houseId)
       this.swipeData = res?.data?.mainPart?.topModule?.housePicture?.housePics
+      this.topInfos = res?.data?.mainPart?.topModule
       console.log(res)
     }
   },

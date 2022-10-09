@@ -10,7 +10,11 @@
     />
   </div>
   <!-- 轮播图 -->
-  <DetailSwipe/>
+  <div class="main">
+    <detail-swipe/>
+    <detail-infos/>
+  </div>
+  
   </div>
 </template>
 
@@ -20,7 +24,8 @@ import { useRoute, useRouter } from 'vue-router'
 // 引入详情页store构造函数
 import useDetailStore from "@/stores/modules/detail.js" 
 
-import DetailSwipe from "./cpns/detail-swipe.vue"
+import DetailSwipe from "./cpns/detail_01-swipe.vue"
+import DetailInfos from "./cpns/detail_02-infos.vue"
 
 const route = useRoute()
 const router = useRouter()

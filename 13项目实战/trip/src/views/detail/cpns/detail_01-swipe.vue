@@ -60,6 +60,8 @@ const setData = () => {
 // 所以重新执行数据处理逻辑解决问题
 watch(swipeData, () => {
   setData()
+},{
+  immediate:true //立即执行
 })
 
 
