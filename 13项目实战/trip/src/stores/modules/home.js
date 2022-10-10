@@ -27,6 +27,7 @@ const useHomeStore = defineStore("home", {
 
     // 请求热门推荐数据
     async fetchHouselistData() {
+      console.log(1121);
       const res = await getHomeHouselist(this.currentPage)
       // 加上...结构数组,不然变成二维数组
       this.houselist.push(...res.data)

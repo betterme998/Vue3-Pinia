@@ -14,6 +14,7 @@
     <detail-swipe/>
     <detail-infos/>
     <detail-facility/>
+    <detail-landlord/>
   </div>
   
   </div>
@@ -28,6 +29,7 @@ import useDetailStore from "@/stores/modules/detail.js"
 import DetailSwipe from "./cpns/detail_01-swipe.vue"
 import DetailInfos from "./cpns/detail_02-infos.vue"
 import DetailFacility from "./cpns/detail_03-facility.vue"
+import DetailLandlord from "./cpns/detail_04-landlord.vue"
 
 const route = useRoute()
 const router = useRouter()

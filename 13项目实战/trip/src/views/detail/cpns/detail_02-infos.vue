@@ -46,7 +46,6 @@ import { storeToRefs } from "pinia"
 
 const detailStore = useDetailStore()
 const { topInfos } = storeToRefs(detailStore)
-console.log(topInfos.value);
 </script>
 
 <style lang="less" scoped>

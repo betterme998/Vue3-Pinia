@@ -9,7 +9,8 @@ const useDetailStore = defineStore("detail", {
   state: () => ({
     swipeData:[],//轮播图数据
     topInfos:{}, //房屋详情信息数据
-    houseFacility:{}//房屋设备信息
+    houseFacility:{},//房屋设备信息
+    landlord:{}//房东介绍数据
   }),
   actions: {
     // 发送异步网络请求返回promise
@@ -18,6 +19,7 @@ const useDetailStore = defineStore("detail", {
       this.swipeData = res?.data?.mainPart?.topModule?.housePicture?.housePics
       this.topInfos = res?.data?.mainPart?.topModule
       this.houseFacility = res?.data?.mainPart?.dynamicModule?.facilityModule?.houseFacility
+      this.landlord = res?.data?.mainPart?.dynamicModule?.landlordModule
       console.log(res)
     }
   },
