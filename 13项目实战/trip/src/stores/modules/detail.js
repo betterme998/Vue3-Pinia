@@ -8,7 +8,8 @@ import { getDatailInfos } from "@/service/modules/detail"
 const useDetailStore = defineStore("detail", {
   state: () => ({
     swipeData:[],//轮播图数据
-    topInfos:{} //房屋详情信息数据
+    topInfos:{}, //房屋详情信息数据
+    houseFacility:{}//房屋设备信息
   }),
   actions: {
     // 发送异步网络请求返回promise
@@ -16,6 +17,7 @@ const useDetailStore = defineStore("detail", {
       const res = await getDatailInfos(houseId)
       this.swipeData = res?.data?.mainPart?.topModule?.housePicture?.housePics
       this.topInfos = res?.data?.mainPart?.topModule
+      this.houseFacility = res?.data?.mainPart?.dynamicModule?.facilityModule?.houseFacility
       console.log(res)
     }
   },

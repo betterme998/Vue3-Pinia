@@ -9,10 +9,11 @@
       @click-left="onClickLeft"
     />
   </div>
-  <!-- 轮播图 -->
+  <!-- 房屋详情信息 -->
   <div class="main">
     <detail-swipe/>
     <detail-infos/>
+    <detail-facility/>
   </div>
   
   </div>
@@ -26,6 +27,7 @@ import useDetailStore from "@/stores/modules/detail.js"
 
 import DetailSwipe from "./cpns/detail_01-swipe.vue"
 import DetailInfos from "./cpns/detail_02-infos.vue"
+import DetailFacility from "./cpns/detail_03-facility.vue"
 
 const route = useRoute()
 const router = useRouter()
