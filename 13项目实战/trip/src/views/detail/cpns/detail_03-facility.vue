@@ -2,8 +2,8 @@
   <div class="facility">
     <detail-section title="房屋设施" more-text="查看全部设施">
       <div class="facility-inner">
-        <template v-for="(item, index) in houseFacility.houseFacilitys" :key="index">
-          <div class="item" v-if="houseFacility.facilitySort?.includes(index)">
+        <template v-for="(item, index) in houseFacility?.houseFacilitys" :key="index">
+          <div class="item" v-if="houseFacility?.facilitySort?.includes(index)">
             <div class="head">
               <img :src="item.icon" alt="">
               <div class="text">{{ item.groupName }}</div>
@@ -32,7 +32,7 @@ import DetailSection from "@/components/detail-section/detail-section.vue"
 
 const detailStore = useDetailStore()
 const { houseFacility } = storeToRefs(detailStore)
-console.log(houseFacility.value.houseFacilitys);
+console.log(houseFacility.value?.houseFacilitys);
 console.log(houseFacility.value);
 </script>
 

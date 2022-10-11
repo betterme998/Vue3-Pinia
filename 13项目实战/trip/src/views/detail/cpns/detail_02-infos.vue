@@ -15,13 +15,13 @@
     <!-- 评论 -->
     <div class="extra comment">
       <div class="left">
-        <span class="score">{{ topInfos.commentBrief.overall }}</span>
-        <span class="title">{{ topInfos.commentBrief.scoreTitle }}</span>
-        <span class="brief">{{ topInfos.commentBrief.commentBrief }}</span>
+        <span class="score">{{ topInfos?.commentBrief?.overall }}</span>
+        <span class="title">{{ topInfos?.commentBrief?.scoreTitle }}</span>
+        <span class="brief">{{ topInfos?.commentBrief?.commentBrief }}</span>
       </div>
       <div class="right">
         <span class="count">
-          {{ topInfos.commentBrief.totalCount }}条评论
+          {{ topInfos?.commentBrief?.totalCount }}条评论
           <van-icon name="arrow" />
         </span>
       </div>
@@ -29,7 +29,7 @@
     <!-- 地理位置 -->
     <div class="position extra">
       <span class="left address">
-        {{ topInfos.nearByPosition.address }}
+        {{ topInfos?.nearByPosition?.address }}
       </span>
       <span class="right">
         地图·周边

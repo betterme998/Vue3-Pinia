@@ -41,19 +41,21 @@ const { swipeData } = storeToRefs(detailStore)
 const swipeGroup = {}
 // 循环拿到每条数据
 const setData = () => {
-  for(const item of swipeData.value) {
-    // 根据区分的key值拿到对应的数据
-    let valueArray = swipeGroup[item.enumPictureCategory]
+  if (swipeData.value) {
+    for(const item of swipeData.value) {
+      // 根据区分的key值拿到对应的数据
+      let valueArray = swipeGroup[item.enumPictureCategory]
 
-    // 第一次可能取到undefined所以进行判断
-    if (!valueArray) {
-      valueArray = []
-      // 把key对应的数组加入，对象中
-      swipeGroup[item.enumPictureCategory] = valueArray
+      // 第一次可能取到undefined所以进行判断
+      if (!valueArray) {
+        valueArray = []
+        // 把key对应的数组加入，对象中
+        swipeGroup[item.enumPictureCategory] = valueArray
+      }
+
+      // // 把数据加到数组中
+      valueArray.push(item)
     }
-
-    // // 把数据加到数组中
-    valueArray.push(item)
   }
 }
 // 因为使用pinia保存数据，刷新后数据丢失，使用了插件pinia-plugin-persistedstate 解决数据丢失问题。但是刷新后轮播图的自定义指示器的数据找不到index。可能对象改变，但原来的值没有变。
