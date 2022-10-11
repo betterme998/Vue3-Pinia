@@ -1,7 +1,7 @@
 <template>
   <div class="notice">
     <detail-section title="预定须知">
-      <div class="notice-inner">
+      <div class="notice-inner" v-if="orderRules">
         <template v-for="(item, index) in orderRules" :key="index">
           <div class="item">
             <span class="title">{{ item.title }}</span>

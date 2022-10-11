@@ -18,6 +18,7 @@
     <detail-comment/>
     <detail-notice/>
     <detail-map/>
+    <detail-intro/>
   </div>
   
   </div>
@@ -36,6 +37,7 @@ import DetailLandlord from "./cpns/detail_04-landlord.vue"
 import DetailComment from "./cpns/detail_05-comment.vue"
 import DetailNotice from "./cpns/detail_06-notice.vue"
 import DetailMap from "./cpns/detail_07-map.vue"
+import DetailIntro from "./cpns/detail_08-intro.vue"
 
 const route = useRoute()
 const router = useRouter()

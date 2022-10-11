@@ -1,5 +1,5 @@
 <template>
-  <div class="comment">
+  <div class="comment" v-if="comment">
     <detail-section title="热门评论" :more-text="`查看全部${comment?.totalCount}条数据`">
       <div class="comment-inner">
         <div class="header">
@@ -16,14 +16,14 @@
               </div>
             </div>
           </div>
-          <div class="right">
-            <template v-for="(item, index) in comment?.subScores" :key="item">
+          <div class="right" v-if="comment.subScores">
+            <template v-for="(item, index) in comment.subScores" :key="item">
               <span class="item">{{ item }}</span>
             </template>
           </div>
         </div>
-        <div class="tags">
-          <template v-for="(item, index) in comment?.commentTagVo" :key="index">
+        <div class="tags" v-if="comment.commentTagVo">
+          <template v-for="(item, index) in comment.commentTagVo" :key="index">
             <span class="item"
                   :style="{ color: item.color, background: item.backgroundColor }">
               {{ item.text }}
@@ -33,15 +33,15 @@
         <div class="content">
           <div class="user">
             <div class="avatar">
-              <img :src="comment.comment.userAvatars" alt="">
+              <img :src="comment?.comment?.userAvatars" alt="">
             </div>
             <div class="profile">
-              <div class="name">{{ comment.comment.userName }}</div>
-              <div class="date">{{ comment.comment.checkInDate }}</div>
+              <div class="name">{{ comment?.comment?.userName }}</div>
+              <div class="date">{{ comment?.comment?.checkInDate }}</div>
             </div>
           </div>
           <div class="text">
-            {{ comment.comment.commentDetail }}
+            {{ comment?.comment?.commentDetail }}
           </div>
         </div>
       </div>

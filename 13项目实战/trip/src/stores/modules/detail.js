@@ -13,7 +13,8 @@ const useDetailStore = defineStore("detail", {
     landlord:{},//房东介绍数据
     comment:{},//评论数据
     orderRules:[],//预定须知
-    position:{}//地图经纬度
+    position:{},//地图经纬度
+    defineProps:{}//价格说明
   }),
   actions: {
     // 发送异步网络请求返回promise
@@ -26,6 +27,7 @@ const useDetailStore = defineStore("detail", {
       this.comment = res?.data?.mainPart?.dynamicModule?.commentModule
       this.orderRules = res?.data?.mainPart?.dynamicModule?.rulesModule?.orderRules
       this.position = res?.data?.mainPart?.dynamicModule?.positionModule
+      this.defineProps = res?.data?.mainPart?.introductionModule
       console.log(res)
     }
   },
