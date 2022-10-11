@@ -12,7 +12,8 @@ const useDetailStore = defineStore("detail", {
     houseFacility:{},//房屋设备信息
     landlord:{},//房东介绍数据
     comment:{},//评论数据
-    orderRules:[]//预定须知
+    orderRules:[],//预定须知
+    position:{}//地图经纬度
   }),
   actions: {
     // 发送异步网络请求返回promise
@@ -24,6 +25,7 @@ const useDetailStore = defineStore("detail", {
       this.landlord = res?.data?.mainPart?.dynamicModule?.landlordModule
       this.comment = res?.data?.mainPart?.dynamicModule?.commentModule
       this.orderRules = res?.data?.mainPart?.dynamicModule?.rulesModule?.orderRules
+      this.position = res?.data?.mainPart?.dynamicModule?.positionModule
       console.log(res)
     }
   },

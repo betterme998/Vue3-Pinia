@@ -46,3 +46,18 @@
 
 6.房东介绍
 7.评论
+
+8.地图
+  1.地图如何嵌入前端项目
+    .申请称为百度地图开发者
+    .登录后点击 控制台 注册称为开发者
+    .针对应用程序创建AppKey
+      控制台->应用管理->我的应用->创建应用
+    .在jsvascript API中查看使用方法
+      .将其中<script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&&type=webgl&ak=您的密钥">
+      </script>导入到项目中
+      .导入到最外层的index.html中
+    .这样就能在项目中使用百度地图API了
+  
+  2.拿到经纬度数据
+
