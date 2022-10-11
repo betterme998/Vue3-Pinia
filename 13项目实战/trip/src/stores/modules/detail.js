@@ -10,7 +10,9 @@ const useDetailStore = defineStore("detail", {
     swipeData:[],//轮播图数据
     topInfos:{}, //房屋详情信息数据
     houseFacility:{},//房屋设备信息
-    landlord:{}//房东介绍数据
+    landlord:{},//房东介绍数据
+    comment:{},//评论数据
+    orderRules:[]//预定须知
   }),
   actions: {
     // 发送异步网络请求返回promise
@@ -20,6 +22,8 @@ const useDetailStore = defineStore("detail", {
       this.topInfos = res?.data?.mainPart?.topModule
       this.houseFacility = res?.data?.mainPart?.dynamicModule?.facilityModule?.houseFacility
       this.landlord = res?.data?.mainPart?.dynamicModule?.landlordModule
+      this.comment = res?.data?.mainPart?.dynamicModule?.commentModule
+      this.orderRules = res?.data?.mainPart?.dynamicModule?.rulesModule?.orderRules
       console.log(res)
     }
   },
