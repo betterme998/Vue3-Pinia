@@ -4,7 +4,8 @@
   <tab-control
     v-if="showTabControl"
     class="tabs"
-    :titles="['abc','abc','ssd','sef', 'wes']"
+    :titles="names"
+    ref="controlRef"
     @tabItemClick="tabClick"
   />
     <!-- 导航栏 -->
@@ -17,14 +18,14 @@
     />
   </div>
   <!-- 房屋详情信息 -->
-  <div class="main">
+  <div class="main" v-memo="[swipeData]">
     <detail-swipe/>
-    <detail-infos/>
-    <detail-facility/>
-    <detail-landlord/>
-    <detail-comment/>
-    <detail-notice/>
-    <detail-map/>
+    <detail-infos name="描述" :ref="getSectionRef"/>
+    <detail-facility name="设施" :ref="getSectionRef"/>
+    <detail-landlord name="房东" :ref="getSectionRef"/>
+    <detail-comment name="评论" :ref="getSectionRef"/>
+    <detail-notice name="须知" :ref="getSectionRef"/>
+    <detail-map name="地图" :ref="getSectionRef"/>
     <detail-intro/>
   </div>
   <div class="footer">
@@ -40,6 +41,7 @@ import { ref, computed } from "vue"
 import { useRoute, useRouter } from 'vue-router'
 // 引入详情页store构造函数
 import useDetailStore from "@/stores/modules/detail.js" 
+import { storeToRefs } from "pinia"
 
 import TabControl from "@/components/tab-control/tab-control.vue"
 import DetailSwipe from "./cpns/detail_01-swipe.vue"
@@ -59,6 +61,8 @@ const router = useRouter()
 // 发送网络请求
 const detailStore = useDetailStore()
 detailStore.fetchDetailData(route.params.id)
+// 用于v-memo 当数据变化是才发送改变
+const { swipeData } = storeToRefs(detailStore)
 
 
 // 监听返回按钮的点击
@@ -77,16 +81,37 @@ const showTabControl = computed(() => {
 })
 
 // 点击tab
+const controlRef = ref()
+
+// 动态绑定ref 绑定函数
+const sectionEls = ref({})
+// 拿到所有keys，绑定到tab
+const names = computed(() => {
+  return Object.keys(sectionEls.value)
+})
+// 获得所有绑定了函数的ref
+const getSectionRef  = (value) => {
+  // 获取属性
+  const name = value.$el.getAttribute("name")
+  sectionEls.value[name] = value.$el
+}
+
 const tabClick = (index) => {
-  console.log("---33-")
   // 点击滚动到对应的位置
-  // 1.拿到滚动的元素
-  detailRef.value.scrollTop({
-    top:index (index+1) * 200,//滚动的位置
+  // 1.拿到key
+  const key = Object.keys(sectionEls.value)[index]
+  // 2.拿元素
+  const el = sectionEls.value[key]
+  let instance = el.offsetTop
+  if (index !== 0) {
+    instance = instance - controlRef.value.$el.clientHeight
+  }
+  detailRef.value.scrollTo({
+    top:instance,//滚动的位置,拿到组件根元素$el
     behavior: "smooth" //平滑的滚动
   })
-
 }
+
 </script>
 
 <style lang="less" scoped>
