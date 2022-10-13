@@ -59,7 +59,8 @@ const setData = () => {
   }
 }
 // 因为使用pinia保存数据，刷新后数据丢失，使用了插件pinia-plugin-persistedstate 解决数据丢失问题。但是刷新后轮播图的自定义指示器的数据找不到index。可能对象改变，但原来的值没有变。
-// 所以重新执行数据处理逻辑解决问题
+// 所以重新执行数据处理逻辑解决问题 （就是findIndex找不到item）
+// 原始值保存在pinia中，处理后的值保存在页面中，当刷新页面时
 watch(swipeData, () => {
   setData()
 },{

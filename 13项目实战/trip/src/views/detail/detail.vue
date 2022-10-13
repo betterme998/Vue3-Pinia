@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, watch } from "vue"
 // 导入当前活跃的router
 import { useRoute, useRouter } from 'vue-router'
 // 引入详情页store构造函数
@@ -91,7 +91,9 @@ const names = computed(() => {
 })
 // 获得所有绑定了函数的ref
 const getSectionRef  = (value) => {
-  // 获取属性
+  // 绑定的ref 函数再卸载的时候也会执行getSectionRef（如点击返回），但是卸载后给我们的值为null，为null时取$el会报错
+  if(!value) return
+    // 获取属性
   const name = value.$el.getAttribute("name")
   sectionEls.value[name] = value.$el
 }
@@ -112,6 +114,10 @@ const tabClick = (index) => {
   })
 }
 
+// 页面滚动，滚动时匹配对应的tabControol的index
+watch(scrollTop, (newValue) => {
+  // 拿到所有主题的sctollTop进行遍历
+})
 </script>
 
 <style lang="less" scoped>
