@@ -115,8 +115,23 @@ const tabClick = (index) => {
 }
 
 // 页面滚动，滚动时匹配对应的tabControol的index
+const tabControlRef = ref()
 watch(scrollTop, (newValue) => {
-  // 拿到所有主题的sctollTop进行遍历
+  // 1.拿到所有主题的sctollTop
+  const els = Object.values(sectionEls.value)
+  const values = els.map(el => el.offsetTop)
+
+  // 2.根据newValue去匹配想要的索引
+  let index = values.length - 1 //因为数组最后没有值，不成立就为最后一项
+  for (let i = 0; i < values.length; i++) {
+    // 当数组的值大于滚动的值
+    if (values[i]  >  (newValue + controlRef.value?.$el.clientHeight) ) {
+      // 实际位置为索引减一
+      index = i - 1
+      break;
+    }
+  }
+  controlRef.value?.setCurrentIndex(index) 
 })
 </script>
 

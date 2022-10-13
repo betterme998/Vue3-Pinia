@@ -39,6 +39,9 @@
         console.log(this.currentIndex);
         // 点击时发生自定义事件
         this.$emit("tabItemClick", index);
+      },
+      setCurrentIndex(index) {
+        this.currentIndex = index
       }
 
     }
