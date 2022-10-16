@@ -4,7 +4,7 @@
     <!-- 匹配的是组件的name属性 -->
     <!-- Composition API中展示没有定义name属性，使用在使用一个script定义name -->
     <router-view v-slot="props">
-      <keep-alive includes = "home">
+      <keep-alive include = "home">
         <component :is="props.Component"></component>
       </keep-alive>
     </router-view>
@@ -12,7 +12,7 @@
     <Loading/>
     
     <!-- 隐藏tabbar方案一 -->
-    <tab-bar v-if="!route.meta.hiderTabBar"/>
+    <tab-bar v-show="!route.meta.hiderTabBar"/>
     <!-- 隐藏tabbar方案二 css方法 -->
     <!-- <tab-bar/> -->
   </div>
