@@ -169,6 +169,7 @@
             break
           }
         }
+13.每一个程序都会经过 vite/webpack  里面有postcss工具，我们往里面添加插件 ->plugins ->postcss-px-to-viewport
 
 
 
