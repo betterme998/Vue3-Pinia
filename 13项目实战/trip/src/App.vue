@@ -1,13 +1,16 @@
 <template>
   <div class="app">
-    <!-- <div class="ItemContent">
-      <router-view></router-view>
-    </div> -->
-    <router-view></router-view>
-
+   
+    <!-- 匹配的是组件的name属性 -->
+    <!-- Composition API中展示没有定义name属性，使用在使用一个script定义name -->
+    <router-view v-slot="props">
+      <keep-alive includes = "home">
+        <component :is="props.Component"></component>
+      </keep-alive>
+    </router-view>
     <!-- 加载动画 -->
     <Loading/>
-
+    
     <!-- 隐藏tabbar方案一 -->
     <tab-bar v-if="!route.meta.hiderTabBar"/>
     <!-- 隐藏tabbar方案二 css方法 -->

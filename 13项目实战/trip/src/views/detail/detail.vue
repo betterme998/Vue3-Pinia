@@ -98,6 +98,10 @@ const getSectionRef  = (value) => {
   sectionEls.value[name] = value.$el
 }
 
+// 由于点击标签页面也会滚动，所以标签选择状态也会一个一个改变，导致点击相隔几个的标签时，所有在内的标签都会有选中状态。
+// 解决：点击时不要设置
+let isClick = false //点击时不触发滚动
+let currentDista = -1 //记录位置，当滚动到指定位置后吧isClick设置为false
 const tabClick = (index) => {
   // 点击滚动到对应的位置
   // 1.拿到key
@@ -108,6 +112,8 @@ const tabClick = (index) => {
   if (index !== 0) {
     instance = instance - controlRef.value.$el.clientHeight
   }
+  isClick = true
+  currentDista = instance
   detailRef.value.scrollTo({
     top:instance,//滚动的位置,拿到组件根元素$el
     behavior: "smooth" //平滑的滚动
@@ -117,6 +123,12 @@ const tabClick = (index) => {
 // 页面滚动，滚动时匹配对应的tabControol的index
 const tabControlRef = ref()
 watch(scrollTop, (newValue) => {
+  // 当滚动到正确的位置后，把isClick设置为false，不影响后面的滚动监听
+  if (newValue === currentDista) {
+    isClick = false
+  }
+  // 如果是点击状态直接返回
+  if (isClick) return
   // 1.拿到所有主题的sctollTop
   const els = Object.values(sectionEls.value)
   const values = els.map(el => el.offsetTop)

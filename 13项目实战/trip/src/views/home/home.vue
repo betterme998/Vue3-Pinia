@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
     <!-- nav-bar -->
     <home-nav-bar/>
     <!-- 图片 -->
@@ -22,8 +22,12 @@
   </div>
 </template>
 
+<script>
+// 定义name，配合keep-alive使用
+  export default { name:"home"}
+</script>
 <script setup>
-  import { ref, watch, computed } from "vue"
+  import { ref, watch, computed, onActivated } from "vue"
 
   import HomeNavBar from './cpns/home-nav-bar.vue';
   import homeSearchBox from './cpns/home-search-box.vue';
@@ -50,7 +54,8 @@
   }
 
   // 监听滚动底部请求数据
-  const { isReachBottom, scrollTop } = useScroll()
+  const homeRef = ref()
+  const { isReachBottom, scrollTop } = useScroll(homeRef)
   // 使用watch来监听是否到达底部
   watch(isReachBottom, (newValue) => {
     if (newValue) {
@@ -70,6 +75,12 @@
   })
   
 
+  // 跳转回home时，保留原来的位置
+  onActivated(() => {
+    homeRef.value?.scrollTo({
+      top:scrollTop.value
+    })
+  })
 
 
 </script>
@@ -77,6 +88,9 @@
 <style lang="less" scoped>
 .home {
   padding-bottom: 50px;
+  box-sizing: border-box;
+  height:100vh;
+  overflow-y: auto;
 }
 
 .banner {
