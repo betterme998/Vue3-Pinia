@@ -1,26 +1,23 @@
 <template>
   <div class="app">
-    <button @click="counter++">+1</button>
-    <!-- 1.传入参数和修饰符 -->
-    <!-- <h2 v-why:kobe.abc.cba="message">哈哈哈</h2> -->
-
-    <!-- 2.价格拼接单位符号 -->
-    <h2 v-unit>{{ 111 }}</h2>
+    <!-- 
+      显示一个时间，在实际开发中并不是写死的，数据来源于服务器，服务器在返回时间时，返回的是‘时间戳’。我们每次要进行转换
+      时间戳：10位 -- 秒
+             13位 -- 毫秒
+      项目中很多地方使用时间，如果每个组件都写方法，计算属性很麻烦，
+      这个时候就可以使用自定义指令
+     -->
+     <!-- 转换时间戳的指令 传参 -->
+    <h2 v-ftime="'YYYY/MM/DD'">{{ timestame }}</h2>
+    <!-- 不传参 -->
+    <h2 v-ftime>{{ timestame }}</h2>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const counter = ref(0)
 
-const message = '你好啊，李银河'
-// 自定义指令，必须v开头
-const vWhy = {
-  // 拿到传过来的值，el为当元素，bingdings为参数
-  mounted(el, bindings) {
-    console.log(bindings);
-  }
-}
+// 时间戳
+const timestame = 1231355265
 </script>
 
 <style scoped>
