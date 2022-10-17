@@ -10,7 +10,7 @@ export default function directiveFtime(app) {
         // 时间戳为10位表示 秒，转换为毫秒
         timestamp = timestamp * 1000;
       }
-
+      timestamp = Number(timestamp)
       // 2.获取传入的参数
       let value = bindings.value
       if (!value) {
