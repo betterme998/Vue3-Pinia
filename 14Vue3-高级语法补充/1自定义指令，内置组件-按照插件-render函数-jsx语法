@@ -103,32 +103,6 @@
       npm install @vitejs/plugin-vue-jsx -D
     2.在babel.config.js配置文件配置插件
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 回顾
 一.详情页补充
   1.1.详情页滚动匹配tabControl
