@@ -83,48 +83,51 @@
     .对象 （添加属性）
     .组件
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 6.Vue中编写jsx的语法
+  1.jsx的babel配置
+    .如果我们希望在项目中使用jsx，那么我们需要添加jsx的支持
+      .jsx我们通常会通过Babel来进行转换（React编写的jsx就是通过babel转换的）；
+      .对于Vue来说，我们只需要在Babel中配置对应的插件即可
+
+      template由 vue-loader进行转换的
+      render 不需要转化
+      jsx  由 babel 
+
+      babel 可将es6 转 es5
+                ts 转 js 
+                jsx 转 js 
+    1.安装Babel支持vue的jsx插件
+      npm install @vue/babel-plugin-jsx -D 
+
+      .如果是Vite环境，需要安装插件
+      npm install @vitejs/plugin-vue-jsx -D
+    2.在babel.config.js配置文件配置插件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 回顾
 一.详情页补充
