@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
 // import App from './01_自定义指令/App.vue'
 // import App from './02_内置组件补充/App.vue'
-import App from './03_安装插件/App.vue'
+// import App from './03_安装插件/App.vue'
+import App from './04_Render函数/App.vue'
 import useDirectivs from "./01_自定义指令/directives/index"
 
 // import router from "./router"
 
-
+// 自定义指令方式一：
 // const app = createApp(App)
 // useDirectivs(app)
 
@@ -27,5 +28,6 @@ import useDirectivs from "./01_自定义指令/directives/index"
 // app.mount('#app')
 
 // use(router) 本质是传入一个对象，会调用router中的install函数
+// 自定义指令的方式二：使用插件
 createApp(App).use(useDirectivs).mount('#app')
 
