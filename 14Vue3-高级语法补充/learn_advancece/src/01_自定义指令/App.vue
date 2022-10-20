@@ -9,6 +9,7 @@
      -->
      <!-- 转换时间戳的指令 传参 -->
     <h2 v-ftime="'YYYY/MM/DD'">{{ timestame }}</h2>
+    <h2 v-dtime>{{ timestame2 }}</h2>
     <!-- 不传参 -->
     <h2 v-ftime>{{ timestame }}</h2>
   </div>
@@ -18,6 +19,8 @@
 
 // 时间戳
 const timestame = 1231355265
+const timestame2 = '2022-10-19T08:04:03.000+0000'
+
 </script>
 
 <style scoped>
